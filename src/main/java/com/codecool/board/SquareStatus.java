@@ -10,22 +10,22 @@ public enum SquareStatus {
         this.squareStatusCode = squareStatusCode;
     }
 
-    public char getSquareCharacter(){
+    public int getSquareUnicode(){
         switch (this.squareStatusCode){
             case 0 -> {
-                return (char) 0x25A1;
+                return 0x25A1;
             }
             case 1 -> {
-                return (char) 0x25A9;
+                return 0x25A9;
             }
             case 2 -> {
-                return (char) 0x25A3;
+                return 0x25A3;
             }
             case 3 -> {
-                return (char) 0x25A0;
+                return 0x25A0;
             }
             default -> {
-                return (char) 0x25CB;
+                return 0x25CB;
             }
         }
     }
