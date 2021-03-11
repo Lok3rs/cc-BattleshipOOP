@@ -1,5 +1,7 @@
 package com.codecool.utils;
 
+import java.util.List;
+
 public class Display {
 
     public void printMenu() {
@@ -7,7 +9,7 @@ public class Display {
         showMainMenuOptions();
     }
 
-    private void printLogo(){
+    public void printLogo(){
         System.out.println("""
                                                      |__
                                                      |\\/
@@ -33,14 +35,31 @@ public class Display {
                 """);
     }
 
-    private void showMainMenuOptions(){
+    public void showMainMenuOptions(){
         System.out.println("""
                                         ============================
                                         |        Main menu         |
                                         |    1 - Start new game    |
                                         |    2 - Show highscores   |
-                                        |    3 - Exit              |
+                                        |    0 - Exit              |
                                         ============================
                 """);
+    }
+
+    public void showStartGameOptions(){
+        System.out.println("""
+                                        ============================
+                                        |    Choose game option    |
+                                        |   1 - Player vs Player   |
+                                        |   2 - Player vs Computer | 
+                                        |   0 - Back to main menu  |
+                                        ============================
+                """);
+    }
+
+    public void showHighscores(List<String> scores){
+        int nameIndex = 0;
+        int scoreIndex = 0;
+        
     }
 }
