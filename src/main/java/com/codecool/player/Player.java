@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Player {
-    private int id;
-    private String name;
+    private final int id;
+    private final String name;
     private int score;
     protected boolean isAlive = true;
     protected ShipCollection ships;
@@ -68,10 +68,6 @@ public abstract class Player {
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public boolean isAlive() {
