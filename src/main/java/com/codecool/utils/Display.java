@@ -2,8 +2,9 @@ package com.codecool.utils;
 
 public class Display {
 
-    public void printMenu(){
+    public void printMenu() {
         printLogo();
+        showMainMenuOptions();
     }
 
     private void printLogo(){
@@ -29,6 +30,17 @@ public class Display {
                                 |_.__/ \\__,_|\\__|\\__|_|\\___||___/_| |_|_| .__/\s
                                                                         | |   \s
                                                                         |_|  \s
+                """);
+    }
+
+    private void showMainMenuOptions(){
+        System.out.println("""
+                                        ============================
+                                        |        Main menu         |
+                                        |    1 - Start new game    |
+                                        |    2 - Show highscores   |
+                                        |    3 - Exit              |
+                                        ============================
                 """);
     }
 }
