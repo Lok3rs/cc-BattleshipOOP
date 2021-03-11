@@ -1,5 +1,7 @@
 package com.codecool.utils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Display {
@@ -7,6 +9,12 @@ public class Display {
     public void printMenu() {
         printLogo();
         showMainMenuOptions();
+        showStartGameOptions();
+        List<List> scores = new ArrayList<>();
+        scores.add(Arrays.asList("Bob", "100"));
+        scores.add(Arrays.asList("John", "200"));
+        scores.add(Arrays.asList("Emma", "300"));
+        showHighscores(scores);
     }
 
     public void printLogo(){
@@ -57,9 +65,23 @@ public class Display {
                 """);
     }
 
-    public void showHighscores(List<String> scores){
+    public void showHighscores(List<List> scores){
         int nameIndex = 0;
         int scoreIndex = 0;
-        
+        String tabs = "\t\t\t\t\t\t";
+        String sepLine = tabs + "|--------------+-----------|";
+        System.out.println(tabs + "============================");
+        System.out.printf(tabs + "|   %-10s |   %5s   |\n", "Name", "Score");
+        if (scores.size() > 0){
+            System.out.println(sepLine);
+            for (List score : scores){
+                System.out.printf(tabs + "|   %-10s |   %5s   |\n", score.get(0), score.get(1));
+                if (scores.indexOf(score) != scores.size() - 1){
+                    System.out.println(sepLine);
+                }
+            }
+        }
+
+        System.out.println(tabs + "============================");
     }
 }
