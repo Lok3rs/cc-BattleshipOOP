@@ -6,10 +6,10 @@ import java.util.List;
 public class Ship {
 
     private final List<Square> shipContent;
-    private final ShipOrientation shipOrientation;
-    private final int shipBowY;
-    private final int shipBowX;
-    private final ShipType shipType;
+    private ShipOrientation shipOrientation;
+    private int shipBowY;
+    private int shipBowX;
+    public final ShipType shipType;
 
     public Ship(ShipType shipType, ShipOrientation shipOrientation, int shipsBowY, int shipsBowX) {
         this.shipType = shipType;
@@ -20,7 +20,7 @@ public class Ship {
         placeShip();
     }
 
-    private void placeShip(){
+    public void placeShip(){
         for (int i = 0; i < this.shipType.getShipLength(); i++){
             this.shipContent.add(
                     this.shipOrientation == ShipOrientation.HORIZONTAL ?
@@ -38,6 +38,10 @@ public class Ship {
         return shipOrientation;
     }
 
+    public void setShipOrientation(ShipOrientation shipOrientation) {
+        this.shipOrientation = shipOrientation;
+    }
+
     public int getShipBowY() {
         return shipBowY;
     }
@@ -45,4 +49,8 @@ public class Ship {
     public int getShipBowX() {
         return shipBowX;
     }
+
+    public void setShipBowY(int Y) { this.shipBowY = Y;}
+
+    public void setShipBowX(int X) { this.shipBowX = X;}
 }

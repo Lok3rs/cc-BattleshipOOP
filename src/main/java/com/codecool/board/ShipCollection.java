@@ -5,6 +5,9 @@ import java.util.List;
 
 public class ShipCollection {
 
+    //10x
+    //1s-4, 2s-3,3s-2,4s-1
+
     private final List<Ship> ships;
 
     public ShipCollection() {
