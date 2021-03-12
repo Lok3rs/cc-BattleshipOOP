@@ -1,7 +1,10 @@
 package com.codecool.utils;
 
+import com.codecool.board.ShipCollection;
 import com.codecool.board.Square;
 import com.codecool.board.enums.SquareStatus;
+import com.codecool.player.ComputerPlayer;
+import com.codecool.player.Player;
 import com.codecool.utils.enums.ComputerPlayerDifficultyOptions;
 import com.codecool.utils.enums.MainMenuOptions;
 import com.codecool.utils.enums.StartGameMenuOptions;
@@ -39,6 +42,8 @@ public class Display {
                 {new Square(1, 1, SquareStatus.HIT),new Square(1, 1, SquareStatus.EMPTY), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT)},
                 {new Square(1, 1, SquareStatus.HIT),new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT)},
         });
+        Player winner = new ComputerPlayer(1, "John", 0, true, new ShipCollection());
+        printWinnerAsciiArt(winner);
 
     }
 
@@ -135,5 +140,24 @@ public class Display {
             System.out.printf("%2s", (char) (0x24f5 + i));
         }
         System.out.println();
+    }
+
+    public void printWinnerAsciiArt(Player winner){
+        System.out.println("""
+                                              (_v_)                  \s
+                                               _|_                   \s
+                                               | |                   \s
+                                          |-----+-----|          ,%%%.     \s
+                                          |    1ST    |          % 1 %     \s
+                                          |   PRIZE   |          `%%%'     \s
+                                           '---------'            ( (      \s
+                                            \\       /             )  )     \s
+                                             '.   .'             (   (     \s
+                                               | |                )'  )    \s
+                                              .' '.              (/ \\/ \s
+                                             _|___|_                 \s
+                                            [#######]   \s
+                """);
+        System.out.printf("%s Winner is %s", tabs, winner.getName());
     }
 }
