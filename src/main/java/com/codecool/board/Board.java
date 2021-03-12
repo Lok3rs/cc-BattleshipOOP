@@ -67,6 +67,4 @@ public class Board {
     private boolean isFieldFilled(int y, int x){
         return gameBoard[y][x].getSquareStatus() != SquareStatus.EMPTY;
     }
-
-
 }

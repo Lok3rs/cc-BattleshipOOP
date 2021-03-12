@@ -8,6 +8,7 @@ import com.codecool.player.ComputerPlayer;
 import com.codecool.player.Player;
 import com.codecool.utils.enums.ComputerPlayerDifficultyOptions;
 import com.codecool.utils.enums.MainMenuOptions;
+import com.codecool.utils.enums.ShipPlacementOptions;
 import com.codecool.utils.enums.StartGameMenuOptions;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class Display {
     private final MainMenuOptions[] mainMenuOptions = MainMenuOptions.values();
     private final StartGameMenuOptions[] startGameMenuOptions = StartGameMenuOptions.values();
     private final ComputerPlayerDifficultyOptions[] computerPlayerDifficultyOptions = ComputerPlayerDifficultyOptions.values();
+    private final ShipPlacementOptions[] shipPlacementOptions = ShipPlacementOptions.values();
 
     public void printMenu() {
         printLogo();
@@ -35,6 +37,7 @@ public class Display {
         showGameBoard(newBoard.getGameBoard());
         Player winner = new ComputerPlayer(1, "John", 0, true, new ShipCollection());
         printWinnerAsciiArt(winner);
+        showPlacementOptions();
 
     }
 
@@ -96,6 +99,15 @@ public class Display {
         System.out.println(borderLine);
     }
 
+    public void showPlacementOptions(){
+        System.out.println(borderLine);
+        System.out.printf(tabs + "| %-25s|%n", "Choose placement method");
+        for (ShipPlacementOptions option : shipPlacementOptions){
+            System.out.printf(tabs + "|       %-19s|%n", option.getOption());
+        }
+        System.out.println(borderLine);
+    }
+
     public void showHighscores(List<List> scores){
         final int nameIndex = 0;
         final int scoreIndex = 1;
@@ -149,6 +161,6 @@ public class Display {
                                              _|___|_                 \s
                                             [#######]   \s
                 """);
-        System.out.printf("%s Winner is %s", tabs, winner.getName());
+        System.out.printf("%s Winner is %s%n", tabs, winner.getName());
     }
 }
