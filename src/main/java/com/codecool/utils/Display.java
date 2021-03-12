@@ -1,14 +1,20 @@
 package com.codecool.utils;
 
 import com.codecool.board.Square;
+import com.codecool.utils.enums.ComputerPlayerDifficultyOptions;
+import com.codecool.utils.enums.MainMenuOptions;
+import com.codecool.utils.enums.StartGameMenuOptions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Display {
+    private final String tabs = "\t\t\t\t\t\t";
+    private final String borderLine = tabs + "============================";
+    private final MainMenuOptions[] mainMenuOptions = MainMenuOptions.values();
+    private final StartGameMenuOptions[] startGameMenuOptions = StartGameMenuOptions.values();
+    private final ComputerPlayerDifficultyOptions[] computerPlayerDifficultyOptions = ComputerPlayerDifficultyOptions.values();
 
     public void printMenu() {
         printLogo();
@@ -54,45 +60,37 @@ public class Display {
     }
 
     public void showMainMenuOptions(){
-        System.out.println("""
-                                        ============================
-                                        |        Main menu         |
-                                        |    1 - Start new game    |
-                                        |    2 - Show highscores   |
-                                        |    0 - Exit              |
-                                        ============================
-                """);
+        System.out.println(borderLine);
+        System.out.printf(tabs + "|         %-17s|%n", "Main Menu");
+        for (MainMenuOptions option : mainMenuOptions){
+            System.out.printf(tabs + "|    %-22s|%n", option.getOption());
+        }
+        System.out.println(borderLine);
     }
 
+
     public void showStartGameOptions(){
-        System.out.println("""
-                                        ============================
-                                        |    Choose game option    |
-                                        |   1 - Player vs Player   |
-                                        |   2 - Player vs Computer | 
-                                        |   0 - Back to main menu  |
-                                        ============================
-                """);
+        System.out.println(borderLine);
+        System.out.printf(tabs + "|    %-22s|%n", "Choose game option");
+        for (StartGameMenuOptions option : startGameMenuOptions){
+            System.out.printf(tabs + "|   %-23s|%n", option.getOption());
+        }
+        System.out.println(borderLine);
     }
 
     public void showComputerPlayerDifficultyOptions(){
-        System.out.println("""
-                                        ============================
-                                        | Choose difficulty level  |
-                                        |        1 - Easy          |
-                                        |        2 - Medium        | 
-                                        |        2 - Hard          | 
-                                        |        0 - Back          |
-                                        ============================
-                """);
+        System.out.println(borderLine);
+        System.out.printf(tabs + "|  %-24s|%n", "Choose difficulty level");
+        for (ComputerPlayerDifficultyOptions option : computerPlayerDifficultyOptions){
+            System.out.printf(tabs + "|        %-18s|%n", option.getOption());
+        }
+        System.out.println(borderLine);
     }
 
     public void showHighscores(List<List> scores){
         final int nameIndex = 0;
         final int scoreIndex = 1;
-        final String tabs = "\t\t\t\t\t\t";
         final String sepLine = tabs + "|--------------+-----------|";
-        final String borderLine = tabs + "============================";
         System.out.println(borderLine);
         System.out.printf(tabs + "|   %-10s |   %5s   |\n", "Name", "Score");
         if (scores.size() > 0){

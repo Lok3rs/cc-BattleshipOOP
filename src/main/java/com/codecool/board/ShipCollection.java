@@ -15,7 +15,7 @@ public class ShipCollection {
         ships.add(ship);
     }
 
-    public void  removeShip(Ship ship) {
+    public void removeShip(Ship ship) {
         ships.remove(ship);
     }
 

@@ -26,7 +26,6 @@ public abstract class Player {
         this.score = score;
         this.isAlive = isAlive;
         this.ships = ships;
-
     }
 
 
