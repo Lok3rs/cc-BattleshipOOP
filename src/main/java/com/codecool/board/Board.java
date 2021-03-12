@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Board {
     private final int boardSize = 10;
-    private final Square[][] gameBoard = new Square[boardSize][];
+    private final Square[][] gameBoard = new Square[boardSize][boardSize];
 
     public Board(){
         createBoard();
@@ -18,6 +18,10 @@ public class Board {
                 gameBoard[y][x] = new Square(y, x, SquareStatus.EMPTY);
             }
         }
+    }
+
+    public Square[][] getGameBoard() {
+        return gameBoard;
     }
 
     public boolean isPlacementOk(Ship ship){
@@ -63,4 +67,6 @@ public class Board {
     private boolean isFieldFilled(int y, int x){
         return gameBoard[y][x].getSquareStatus() != SquareStatus.EMPTY;
     }
+
+
 }
