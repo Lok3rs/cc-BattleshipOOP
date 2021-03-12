@@ -22,7 +22,7 @@ public enum SquareStatus {
                 return 0x25A3;
             }
             case 3 -> {
-                return 0x25A0;
+                return 0x25FC;
             }
             default -> {
                 return 0x25CB;

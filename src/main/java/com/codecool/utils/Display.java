@@ -1,6 +1,7 @@
 package com.codecool.utils;
 
 import com.codecool.board.Square;
+import com.codecool.board.SquareStatus;
 import com.codecool.utils.enums.ComputerPlayerDifficultyOptions;
 import com.codecool.utils.enums.MainMenuOptions;
 import com.codecool.utils.enums.StartGameMenuOptions;
@@ -26,6 +27,18 @@ public class Display {
         scores.add(Arrays.asList("John", "200"));
         scores.add(Arrays.asList("Emma", "300"));
         showHighscores(scores);
+        showGameBoard(new Square[][]{
+                {new Square(1, 1, SquareStatus.MISSED),new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT)},
+                {new Square(1, 1, SquareStatus.EMPTY),new Square(1, 1, SquareStatus.SHIP), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT)},
+                {new Square(1, 1, SquareStatus.EMPTY),new Square(1, 1, SquareStatus.MISSED), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT)},
+                {new Square(1, 1, SquareStatus.EMPTY),new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.MISSED), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT)},
+                {new Square(1, 1, SquareStatus.MISSED),new Square(1, 1, SquareStatus.MISSED), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT)},
+                {new Square(1, 1, SquareStatus.HIT),new Square(1, 1, SquareStatus.MISSED), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT)},
+                {new Square(1, 1, SquareStatus.EMPTY),new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT)},
+                {new Square(1, 1, SquareStatus.EMPTY),new Square(1, 1, SquareStatus.EMPTY), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT)},
+                {new Square(1, 1, SquareStatus.HIT),new Square(1, 1, SquareStatus.EMPTY), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT)},
+                {new Square(1, 1, SquareStatus.HIT),new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT), new Square(1, 1, SquareStatus.HIT)},
+        });
 
     }
 
@@ -95,7 +108,7 @@ public class Display {
         System.out.printf(tabs + "|   %-10s |   %5s   |\n", "Name", "Score");
         if (scores.size() > 0){
             System.out.println(sepLine);
-            for (List score : scores){
+            for (var score : scores){
                 System.out.printf(tabs + "|   %-10s |   %5s   |\n", score.get(nameIndex), score.get(scoreIndex));
                 if (scores.indexOf(score) != scores.size() - 1){
                     System.out.println(sepLine);
@@ -106,19 +119,21 @@ public class Display {
     }
 
     public void showGameBoard(Square[][] gameBoard){
-        final char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWYZ".toCharArray();
-        printColumnNumbers(gameBoard.length);
+        printColumnNumbers(gameBoard[0].length);
         for (int i = 0; i < gameBoard.length; i++){
-
+            System.out.printf("%-1s",(char) (0x24b6 + i));
+            for (int j = 0; j < gameBoard[i].length; j++){
+                System.out.format("%3s",gameBoard[i][j].getSquareCharacter());
+            }
+            System.out.println();
         }
-
     }
 
     private void printColumnNumbers(int gameBoardLength){
+        System.out.print(" ");
         for (int i = 0; i < gameBoardLength; i++){
-            int mod = i == 0 ? 5 : 4;
-            System.out.printf("%" + mod + "s", i + 1);
+            System.out.printf("%3s", (char) (0x24f5 + i));
         }
-        System.out.print("\n");
+        System.out.println();
     }
 }
