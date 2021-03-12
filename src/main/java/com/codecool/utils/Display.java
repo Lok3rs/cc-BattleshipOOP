@@ -121,9 +121,9 @@ public class Display {
     public void showGameBoard(Square[][] gameBoard){
         printColumnNumbers(gameBoard[0].length);
         for (int i = 0; i < gameBoard.length; i++){
-            System.out.printf("%-1s",(char) (0x24b6 + i));
+            System.out.printf("%-1s",(char) (0x0041 + i));
             for (int j = 0; j < gameBoard[i].length; j++){
-                System.out.format("%3s",gameBoard[i][j].getSquareCharacter());
+                System.out.format("%2s",gameBoard[i][j].getSquareCharacter());
             }
             System.out.println();
         }
@@ -132,7 +132,7 @@ public class Display {
     private void printColumnNumbers(int gameBoardLength){
         System.out.print(" ");
         for (int i = 0; i < gameBoardLength; i++){
-            System.out.printf("%3s", (char) (0x24f5 + i));
+            System.out.printf("%2s", (char) (0x24f5 + i));
         }
         System.out.println();
     }
