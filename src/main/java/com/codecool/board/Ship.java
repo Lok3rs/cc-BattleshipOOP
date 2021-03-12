@@ -1,5 +1,9 @@
 package com.codecool.board;
 
+import com.codecool.board.enums.ShipOrientation;
+import com.codecool.board.enums.ShipType;
+import com.codecool.board.enums.SquareStatus;
+
 import java.util.ArrayList;
 import java.util.List;
 

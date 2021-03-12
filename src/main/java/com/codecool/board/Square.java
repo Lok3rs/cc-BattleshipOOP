@@ -1,5 +1,7 @@
 package com.codecool.board;
 
+import com.codecool.board.enums.SquareStatus;
+
 public class Square {
     private final int X;
     private final int Y;

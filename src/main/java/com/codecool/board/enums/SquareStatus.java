@@ -1,4 +1,4 @@
-package com.codecool.board;
+package com.codecool.board.enums;
 
 public enum SquareStatus {
 

@@ -1,7 +1,7 @@
 package com.codecool.utils;
 
 import com.codecool.board.Square;
-import com.codecool.board.SquareStatus;
+import com.codecool.board.enums.SquareStatus;
 import com.codecool.utils.enums.ComputerPlayerDifficultyOptions;
 import com.codecool.utils.enums.MainMenuOptions;
 import com.codecool.utils.enums.StartGameMenuOptions;

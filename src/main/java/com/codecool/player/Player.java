@@ -3,11 +3,10 @@ package com.codecool.player;
 import com.codecool.board.Ship;
 import com.codecool.board.ShipCollection;
 import com.codecool.board.Square;
-import com.codecool.board.SquareStatus;
+import com.codecool.board.enums.SquareStatus;
 import com.codecool.utils.Display;
 import com.codecool.utils.Input;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Player {
