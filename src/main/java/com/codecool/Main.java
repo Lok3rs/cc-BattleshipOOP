@@ -31,6 +31,4 @@ public class Main {
 
 
     }
-
-    public void round(Player player, Square[][] shootingBoard, Square[][] enemyBoard)
 }
