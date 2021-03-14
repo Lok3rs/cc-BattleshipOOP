@@ -3,7 +3,9 @@ package com.codecool;
 
 import com.codecool.board.Board;
 import com.codecool.board.BoardFactory;
+import com.codecool.board.Square;
 import com.codecool.player.HumanPlayer;
+import com.codecool.player.Player;
 import com.codecool.utils.Display;
 
 public class Main {
@@ -29,4 +31,6 @@ public class Main {
 
 
     }
+
+    public void round(Player player, Square[][] shootingBoard, Square[][] enemyBoard)
 }

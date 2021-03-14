@@ -28,6 +28,7 @@ public class HumanPlayer extends Player {
             case SHIP -> {
                 display.printMessage("Hit!");
                 shootingBoard[targetY][targetX].setSquareStatus(SquareStatus.HIT);
+                enemyBoard[targetY][targetX].setSquareStatus(SquareStatus.HIT);
             }
         }
 

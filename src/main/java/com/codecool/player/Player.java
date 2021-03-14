@@ -5,8 +5,6 @@ import com.codecool.board.ShipCollection;
 import com.codecool.utils.Display;
 import com.codecool.utils.Input;
 
-import java.util.List;
-
 public abstract class Player {
 
     protected final String name;
