@@ -12,7 +12,6 @@ public abstract class Player {
     protected final String name;
     protected ShipCollection ships = new ShipCollection();
     protected int score = 0;
-    protected boolean isAlive = true;
     protected Input input = new Input();
     protected Display display = new Display();
 
@@ -24,12 +23,8 @@ public abstract class Player {
         ships.removeShip(ship);
     }
 
-    public void checkIfAlive(){
-        this.isAlive = ships.getShips().size() > 0;
-    }
-
-    public boolean getIsAlive(){
-        return isAlive;
+    public boolean isAlive(){
+        return ships.getShips().size() > 0;
     }
 
     public String getName(){
