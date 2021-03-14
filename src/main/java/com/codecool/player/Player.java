@@ -33,7 +33,7 @@ public abstract class Player {
         return this.score;
     }
 
-    public ShipCollection getShips(){
+    public ShipCollection getShipsCollection(){
         return ships;
     }
 

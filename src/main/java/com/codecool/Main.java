@@ -3,9 +3,7 @@ package com.codecool;
 
 import com.codecool.board.Board;
 import com.codecool.board.BoardFactory;
-import com.codecool.board.Square;
 import com.codecool.player.HumanPlayer;
-import com.codecool.player.Player;
 import com.codecool.utils.Display;
 
 public class Main {
@@ -18,11 +16,11 @@ public class Main {
         HumanPlayer player2 = new HumanPlayer();
 
         Board player1Board = new Board();
-        bf.randomPlacement(player.getShips(), player1Board);
+        bf.randomPlacement(player.getShipsCollection(), player1Board);
         Board player1ShootingBoard = new Board();
 
         Board player2Board = new Board();
-        bf.randomPlacement(player2.getShips(), player2Board);
+        bf.randomPlacement(player2.getShipsCollection(), player2Board);
         Board player2ShootingBoard = new Board();
 
         disp.showGameBoard(player2Board.getGameBoard());
