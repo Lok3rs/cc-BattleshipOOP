@@ -1,10 +1,7 @@
 package com.codecool.utils;
 
 import com.codecool.board.Board;
-import com.codecool.board.ShipCollection;
 import com.codecool.board.Square;
-import com.codecool.board.enums.SquareStatus;
-import com.codecool.player.ComputerPlayer;
 import com.codecool.player.Player;
 import com.codecool.utils.enums.ComputerPlayerDifficultyOptions;
 import com.codecool.utils.enums.MainMenuOptions;
@@ -35,8 +32,6 @@ public class Display {
         showHighscores(scores);
         Board newBoard = new Board();
         showGameBoard(newBoard.getGameBoard());
-        Player winner = new ComputerPlayer(1, "John", 0, true, new ShipCollection());
-        printWinnerAsciiArt(winner);
         showPlacementOptions();
 
     }

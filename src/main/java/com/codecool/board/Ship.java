@@ -10,27 +10,24 @@ import java.util.List;
 public class Ship {
 
     private final List<Square> shipContent;
-    private final ShipOrientation shipOrientation;
-    private final int shipBowY;
-    private final int shipBowX;
     private final ShipType shipType;
+    private ShipOrientation shipOrientation;
+    private int shipBowY;
+    private int shipBowX;
 
-    public Ship(ShipType shipType, ShipOrientation shipOrientation, int shipsBowY, int shipsBowX) {
+    public Ship(ShipType shipType) {
         this.shipType = shipType;
         this.shipContent = new ArrayList<Square>();
-        this.shipOrientation = shipOrientation;
-        this.shipBowY = shipsBowY;
-        this.shipBowX = shipsBowX;
-        placeShip();
     }
 
-    private void placeShip(){
+    public void placeShip(Square[][] gameBoard){
         for (int i = 0; i < this.shipType.getShipLength(); i++){
-            this.shipContent.add(
-                    this.shipOrientation == ShipOrientation.HORIZONTAL ?
-                            new Square(this.shipBowY, this.shipBowX + i, SquareStatus.SHIP) :
-                            new Square(this.shipBowY + i, this.shipBowX, SquareStatus.SHIP)
-            );
+
+            if (this.shipOrientation == ShipOrientation.HORIZONTAL) {
+                gameBoard[this.shipBowY][this.shipBowX + i].setSquareStatus(SquareStatus.SHIP);
+            } else {
+                gameBoard[this.shipBowY + i][this.shipBowX ].setSquareStatus(SquareStatus.SHIP);
+            }
         }
     }
 
@@ -49,4 +46,26 @@ public class Ship {
     public int getShipBowX() {
         return shipBowX;
     }
+
+    public void setShipOrientation(ShipOrientation shipOrientation) {
+        this.shipOrientation = shipOrientation;
+    }
+
+    public void setShipBowY(int shipBowY) {
+        this.shipBowY = shipBowY;
+    }
+
+    public void setShipBowX(int shipBowX) {
+        this.shipBowX = shipBowX;
+    }
+
+    public void setShipContent(){
+        this.shipContent.clear();
+        for (int i = 0; i < this.shipType.getShipLength(); i++){
+        this.shipContent.add(
+                this.shipOrientation == ShipOrientation.HORIZONTAL ?
+                        new Square(this.shipBowY, this.shipBowX + i, SquareStatus.SHIP) :
+                        new Square(this.shipBowY + i, this.shipBowX, SquareStatus.SHIP)
+        );
+    }}
 }

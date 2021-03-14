@@ -31,10 +31,10 @@ public class Board {
     private boolean isShipOutOfBounds(Ship ship){
         for (Square shipPiece : ship.getShipContent()){
             if(shipPiece.getX() >= gameBoard.length || shipPiece.getY() >= gameBoard.length){
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     private boolean isAdjacentToAnotherBoat(Ship ship){
@@ -58,10 +58,10 @@ public class Board {
             boolean isAdjacentBottomLeft = isLastElement && !isInLastRow && !isInFirstColumn && isFieldFilled(currentY + 1, currentX - 1);
             boolean isAdjacentBottomRight = isLastElement && !isInLastRow && !isInLastColumn && isFieldFilled(currentY + 1, currentX + 1);
             boolean isAdjacentAnywhere = isAdjacentOnRight || isAdjacentOnLeft || idAdjacentOnTop || isAdjacentOnBottom || isAdjacentTopLeft || isAdjacentTopRight || isAdjacentBottomLeft || isAdjacentBottomRight;
-            if (isAdjacentAnywhere) return false;
+            if (isAdjacentAnywhere) return true;
             counter++;
         }
-        return true;
+        return false;
     }
 
     private boolean isFieldFilled(int y, int x){
