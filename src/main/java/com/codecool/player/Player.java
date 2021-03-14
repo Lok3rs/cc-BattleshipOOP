@@ -15,7 +15,7 @@ public abstract class Player {
     private int score;
     protected boolean isAlive = true;
     protected ShipCollection ships;
-    private Input input = new Input();
+    private final Input input = new Input();
     private Display display = new Display();
 
 
