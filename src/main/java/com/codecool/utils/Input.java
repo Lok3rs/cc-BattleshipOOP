@@ -35,4 +35,9 @@ public class Input {
         return Integer.parseInt(userInput) - 1;
     }
 
+    public String getPlayerName(){
+        display.printMessage("Provide a player name: ");
+        return scanner.next();
+    }
+
 }

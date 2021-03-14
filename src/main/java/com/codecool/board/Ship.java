@@ -22,7 +22,6 @@ public class Ship {
 
     public void placeShip(Square[][] gameBoard){
         for (int i = 0; i < this.shipType.getShipLength(); i++){
-
             if (this.shipOrientation == ShipOrientation.HORIZONTAL) {
                 gameBoard[this.shipBowY][this.shipBowX + i].setSquareStatus(SquareStatus.SHIP);
             } else {
@@ -66,6 +65,7 @@ public class Ship {
                 this.shipOrientation == ShipOrientation.HORIZONTAL ?
                         new Square(this.shipBowY, this.shipBowX + i, SquareStatus.SHIP) :
                         new Square(this.shipBowY + i, this.shipBowX, SquareStatus.SHIP)
-        );
-    }}
+            );
+        }
+    }
 }

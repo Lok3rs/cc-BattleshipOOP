@@ -1,27 +1,32 @@
 package com.codecool;
 
+
 import com.codecool.board.Board;
 import com.codecool.board.BoardFactory;
-import com.codecool.board.ShipCollection;
-import com.codecool.game.Game;
+import com.codecool.player.HumanPlayer;
 import com.codecool.utils.Display;
-import com.codecool.utils.Input;
 
 public class Main {
 
     public static void main(String[] args) {
-//        Display display = new Display();
-//        Board ocean = new Board();
-//        display.showGameBoard(ocean.getGameBoard());
-//        Game newGame = new Game();
-//        System.out.println(newGame.isGameOver(ocean.getGameBoard()));
-//        BoardFactory bf = new BoardFactory();
-//        ShipCollection ships = new ShipCollection();
-//        bf.randomPlacement(ships, ocean);
-//        display.showGameBoard(ocean.getGameBoard());
-//        System.out.println(newGame.isGameOver(ocean.getGameBoard()));
-        Input input = new Input();
-        input.getCoordinates();
+        Display disp = new Display();
+
+        BoardFactory bf = new BoardFactory();
+        HumanPlayer player = new HumanPlayer();
+        HumanPlayer player2 = new HumanPlayer();
+
+        Board player1Board = new Board();
+        bf.randomPlacement(player.getShips(), player1Board);
+        Board player1ShootingBoard = new Board();
+
+        Board player2Board = new Board();
+        bf.randomPlacement(player2.getShips(), player2Board);
+        Board player2ShootingBoard = new Board();
+
+        disp.showGameBoard(player2Board.getGameBoard());
+        player.handleShoot(player1ShootingBoard.getGameBoard(), player2Board.getGameBoard());
+
+
 
     }
 }
