@@ -9,6 +9,7 @@ public class HumanPlayer extends Player {
 
     @Override
     public void handleShoot(Square[][] shootingBoard, Square[][] enemyBoard){
+        display.clearScreen();
         display.showGameBoard(shootingBoard);
         display.printMessage(String.format("Shooting time! %s turn", this.name));
         int[] shootCoords = input.getCoordinates();
@@ -31,7 +32,9 @@ public class HumanPlayer extends Player {
                 enemyBoard[targetY][targetX].setSquareStatus(SquareStatus.HIT);
             }
         }
-
+        display.clearScreen();
+        display.showGameBoard(shootingBoard);
+        input.waitForEnter();
     }
 }
 

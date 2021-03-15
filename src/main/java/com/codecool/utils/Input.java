@@ -40,4 +40,9 @@ public class Input {
         return scanner.next();
     }
 
+    public void waitForEnter(){
+        display.printMessage("Type ENTER to continue...");
+        scanner.next();
+    }
+
 }

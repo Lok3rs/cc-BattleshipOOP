@@ -7,6 +7,7 @@ import com.codecool.board.enums.SquareStatus;
 import com.codecool.player.HumanPlayer;
 import com.codecool.player.Player;
 import com.codecool.utils.Display;
+import com.codecool.utils.Input;
 
 import java.util.Arrays;
 
@@ -14,6 +15,7 @@ public class Game {
     private final Player player1;
     private final Player player2;
     private final Display display = new Display();
+    private final Input input = new Input();
     private final BoardFactory bf = new BoardFactory();
 
     private final Board player1Board = new Board();
