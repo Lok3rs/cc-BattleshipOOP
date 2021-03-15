@@ -1,5 +1,6 @@
 package com.codecool.player;
 
+import com.codecool.board.Board;
 import com.codecool.board.Ship;
 import com.codecool.board.ShipCollection;
 import com.codecool.board.Square;
@@ -40,7 +41,7 @@ public abstract class Player {
         return ships;
     }
 
-    public void handleShoot(Square[][] shootingBoard, Square[][] enemyBoard) throws IOException {
+    public void handleShoot(Board boardShooting, Board boardEnemy) throws IOException {
 
     }
 

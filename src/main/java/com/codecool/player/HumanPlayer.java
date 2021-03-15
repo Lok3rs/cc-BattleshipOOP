@@ -1,5 +1,6 @@
 package com.codecool.player;
 
+import com.codecool.board.Board;
 import com.codecool.board.Square;
 import com.codecool.board.enums.SquareStatus;
 
@@ -9,7 +10,9 @@ import java.util.List;
 public class HumanPlayer extends Player {
 
     @Override
-    public void handleShoot(Square[][] shootingBoard, Square[][] enemyBoard) throws IOException {
+    public void handleShoot(Board boardShooting, Board boardEnemy) throws IOException {
+        Square[][] shootingBoard = boardShooting.getGameBoard();
+        Square[][] enemyBoard = boardEnemy.getGameBoard();
         display.clearScreen();
         display.showGameBoard(shootingBoard);
         display.printMessage(String.format("Shooting time! %s turn", this.name));
@@ -28,9 +31,9 @@ public class HumanPlayer extends Player {
                 shootingBoard[targetY][targetX].setSquareStatus(SquareStatus.MISSED);
             }
             case SHIP -> {
-                display.printMessage("Hit!");
                 shootingBoard[targetY][targetX].setSquareStatus(SquareStatus.HIT);
                 enemyBoard[targetY][targetX].setSquareStatus(SquareStatus.HIT);
+                display.printMessage(boardEnemy.isShipSunk(targetY, targetX) ? "Hit and sunk!" : "Hit!");
             }
         }
         display.clearScreen();

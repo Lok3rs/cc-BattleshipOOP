@@ -39,8 +39,8 @@ public class Game {
     }
 
     public void PvPRound() throws IOException {
-        player1.handleShoot(player1ShootingBoard.getGameBoard(), player2Board.getGameBoard());
-        player2.handleShoot(player2ShootingBoard.getGameBoard(), player1Board.getGameBoard());
+        player1.handleShoot(player1ShootingBoard, player2Board);
+        player2.handleShoot(player2ShootingBoard, player1Board);
     }
 
     public boolean isGameOver(Square[][] gameBoard){

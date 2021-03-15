@@ -67,4 +67,46 @@ public class Board {
     private boolean isFieldFilled(int y, int x){
         return gameBoard[y][x].getSquareStatus() != SquareStatus.EMPTY;
     }
+
+    public boolean isShipSunk(int y, int x){
+        return checkIfSunkTop(y, x) && checkIfSunkRight(y, x) && checkIfSunkBottom(y, x) && checkIfSunkLeft(y, x);
+    }
+
+    private boolean checkIfSunkTop(int y, int x){
+        if (gameBoard[y][x].getSquareStatus() == SquareStatus.SHIP){
+            return false;
+        } else if (gameBoard[y][x].getSquareStatus() == SquareStatus.EMPTY || y == 0){
+            return true;
+        } else {
+            return checkIfSunkTop(y - 1, x);
+        }
+    }
+
+    private boolean checkIfSunkRight(int y, int x){
+        if (gameBoard[y][x].getSquareStatus() == SquareStatus.SHIP){
+            return false;
+        } else if (gameBoard[y][x].getSquareStatus() == SquareStatus.EMPTY || x == gameBoard.length - 1){
+            return true;
+        } else {
+            return checkIfSunkRight(y, x + 1);
+        }
+    }
+    private boolean checkIfSunkBottom(int y, int x){
+        if (gameBoard[y][x].getSquareStatus() == SquareStatus.SHIP){
+            return false;
+        } else if (gameBoard[y][x].getSquareStatus() == SquareStatus.EMPTY || y == gameBoard.length - 1){
+            return true;
+        } else {
+            return checkIfSunkBottom(y + 1, x);
+        }
+    }
+    private boolean checkIfSunkLeft(int y, int x){
+        if (gameBoard[y][x].getSquareStatus() == SquareStatus.SHIP){
+            return false;
+        } else if (gameBoard[y][x].getSquareStatus() == SquareStatus.EMPTY || x == 0){
+            return true;
+        } else {
+            return checkIfSunkLeft(y, x - 1);
+        }
+    }
 }
