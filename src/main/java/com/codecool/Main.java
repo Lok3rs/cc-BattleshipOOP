@@ -20,7 +20,9 @@ public class Main {
         Board player1ShootingBoard = new Board();
 
         Board player2Board = new Board();
-        bf.randomPlacement(player2.getShipsCollection(), player2Board);
+        //bf.randomPlacement(player2.getShipsCollection(), player2Board);
+        disp.showGameBoard(player2Board.getGameBoard());
+        bf.manualPlacement(player2.getShipsCollection(), player2Board);
         Board player2ShootingBoard = new Board();
 
         disp.showGameBoard(player2Board.getGameBoard());

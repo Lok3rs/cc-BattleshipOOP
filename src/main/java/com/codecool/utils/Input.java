@@ -40,4 +40,16 @@ public class Input {
         return scanner.next();
     }
 
+    public int setShipOrientation(){
+        boolean firstTry = true;
+        String userInput = "";
+        do{
+            display.printMessage(firstTry ? "Provide a ship orientation: (V-vertical,H-horizontal)" : "Invalid input, try again: ");
+            firstTry = false;
+            userInput = scanner.next();
+            if(userInput.equalsIgnoreCase("H")) {return 0;}
+            else if(userInput.equalsIgnoreCase("V")) {return 1;}
+        } while (true);
+    }
+
 }
