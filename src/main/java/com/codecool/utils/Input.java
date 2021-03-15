@@ -1,5 +1,6 @@
 package com.codecool.utils;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Input {
@@ -38,6 +39,11 @@ public class Input {
     public String getPlayerName(){
         display.printMessage("Provide a player name: ");
         return scanner.next();
+    }
+
+    public void waitForEnter() throws IOException {
+        display.printMessage("Type ENTER to continue...");
+        System.in.read();
     }
 
 }

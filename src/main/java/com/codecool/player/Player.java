@@ -1,9 +1,13 @@
 package com.codecool.player;
 
+import com.codecool.board.Board;
 import com.codecool.board.Ship;
 import com.codecool.board.ShipCollection;
+import com.codecool.board.Square;
 import com.codecool.utils.Display;
 import com.codecool.utils.Input;
+
+import java.io.IOException;
 
 public abstract class Player {
 
@@ -35,6 +39,10 @@ public abstract class Player {
 
     public ShipCollection getShipsCollection(){
         return ships;
+    }
+
+    public void handleShoot(Board boardShooting, Board boardEnemy) throws IOException {
+
     }
 
 }
