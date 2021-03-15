@@ -7,10 +7,10 @@ import java.util.List;
 
 public class HumanPlayer extends Player {
 
-
+    @Override
     public void handleShoot(Square[][] shootingBoard, Square[][] enemyBoard){
         display.showGameBoard(shootingBoard);
-        display.printMessage("Shooting time!");
+        display.printMessage(String.format("Shooting time! %s turn", this.name));
         int[] shootCoords = input.getCoordinates();
         int targetY = shootCoords[0];
         int targetX = shootCoords[1];
