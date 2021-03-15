@@ -3,12 +3,13 @@ package com.codecool.player;
 import com.codecool.board.Square;
 import com.codecool.board.enums.SquareStatus;
 
+import java.io.IOException;
 import java.util.List;
 
 public class HumanPlayer extends Player {
 
     @Override
-    public void handleShoot(Square[][] shootingBoard, Square[][] enemyBoard){
+    public void handleShoot(Square[][] shootingBoard, Square[][] enemyBoard) throws IOException {
         display.clearScreen();
         display.showGameBoard(shootingBoard);
         display.printMessage(String.format("Shooting time! %s turn", this.name));

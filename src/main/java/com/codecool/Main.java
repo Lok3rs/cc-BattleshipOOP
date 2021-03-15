@@ -8,9 +8,11 @@ import com.codecool.player.HumanPlayer;
 import com.codecool.player.Player;
 import com.codecool.utils.Display;
 
+import java.io.IOException;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Player newPlayer = new HumanPlayer();
         Player newPlayer2 = new HumanPlayer();
         Game newGame = new Game(newPlayer, newPlayer2);

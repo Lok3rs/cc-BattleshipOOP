@@ -1,5 +1,6 @@
 package com.codecool.utils;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Input {
@@ -40,9 +41,9 @@ public class Input {
         return scanner.next();
     }
 
-    public void waitForEnter(){
+    public void waitForEnter() throws IOException {
         display.printMessage("Type ENTER to continue...");
-        scanner.next();
+        System.in.read();
     }
 
 }

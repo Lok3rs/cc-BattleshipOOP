@@ -9,6 +9,7 @@ import com.codecool.player.Player;
 import com.codecool.utils.Display;
 import com.codecool.utils.Input;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 public class Game {
@@ -29,7 +30,7 @@ public class Game {
         this.player2 = player2;
     }
 
-    public void startGame(){
+    public void startGame() throws IOException {
         bf.randomPlacement(player1.getShipsCollection(), player1Board);
         bf.randomPlacement(player2.getShipsCollection(), player2Board);
         while (true){
@@ -37,7 +38,7 @@ public class Game {
         }
     }
 
-    public void PvPRound(){
+    public void PvPRound() throws IOException {
         player1.handleShoot(player1ShootingBoard.getGameBoard(), player2Board.getGameBoard());
         player2.handleShoot(player2ShootingBoard.getGameBoard(), player1Board.getGameBoard());
     }

@@ -6,6 +6,8 @@ import com.codecool.board.Square;
 import com.codecool.utils.Display;
 import com.codecool.utils.Input;
 
+import java.io.IOException;
+
 public abstract class Player {
 
     protected final String name;
@@ -38,7 +40,7 @@ public abstract class Player {
         return ships;
     }
 
-    public void handleShoot(Square[][] shootingBoard, Square[][] enemyBoard){
+    public void handleShoot(Square[][] shootingBoard, Square[][] enemyBoard) throws IOException {
 
     }
 
