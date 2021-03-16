@@ -25,6 +25,7 @@ public class BoardFactory {
     }
 
     public void manualPlacement(ShipCollection ships, Board gameBoard) {
+        display.showGameBoard(gameBoard.getGameBoard());
         display.printMessage("\nDefine position of your ships: ");
         int[] shootCoords;
         int counter=1;
