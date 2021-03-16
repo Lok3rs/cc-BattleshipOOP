@@ -14,6 +14,7 @@ public class HumanPlayer extends Player {
         Square[][] shootingBoard = boardShooting.getGameBoard();
         Square[][] enemyBoard = boardEnemy.getGameBoard();
         display.clearScreen();
+        display.showGameBoard(enemyBoard);
         display.showGameBoard(shootingBoard);
         display.printMessage(String.format("Shooting time! %s turn", this.name));
         int[] shootCoords = input.getCoordinates();
@@ -34,6 +35,11 @@ public class HumanPlayer extends Player {
                 shootingBoard[targetY][targetX].setSquareStatus(SquareStatus.HIT);
                 enemyBoard[targetY][targetX].setSquareStatus(SquareStatus.HIT);
                 display.printMessage(boardEnemy.isShipSunk(targetY, targetX) ? "Hit and sunk!" : "Hit!");
+                if (boardEnemy.isShipSunk(targetY, targetX)){
+//                    shootingBoard[targetY][targetX].setSquareStatus(SquareStatus.SUNK);
+//                    enemyBoard[targetY][targetX].setSquareStatus(SquareStatus.SUNK);
+                    boardEnemy.markSunk(shootingBoard, targetY, targetX);
+                }
             }
         }
         display.clearScreen();

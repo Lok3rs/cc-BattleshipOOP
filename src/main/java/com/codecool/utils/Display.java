@@ -2,6 +2,7 @@ package com.codecool.utils;
 
 import com.codecool.board.Board;
 import com.codecool.board.Square;
+import com.codecool.board.enums.SquareStatus;
 import com.codecool.player.Player;
 import com.codecool.utils.enums.ComputerPlayerDifficultyOptions;
 import com.codecool.utils.enums.MainMenuOptions;
@@ -124,9 +125,11 @@ public class Display {
     public void showGameBoard(Square[][] gameBoard){
         printColumnNumbers(gameBoard[0].length);
         for (int i = 0; i < gameBoard.length; i++){
-            System.out.printf("%-1s",(char) (0x0041 + i));
+            System.out.printf("%-2s",(char) (0x0041 + i));
             for (int j = 0; j < gameBoard[i].length; j++){
-                System.out.format("%2s",gameBoard[i][j].getSquareCharacter());
+                System.out.print(gameBoard[i][j].getSquareStatus() == SquareStatus.SUNK ?
+                       String.format("%2s",gameBoard[i][j].getSquareCharacter()):
+                        String.format("%2s",gameBoard[i][j].getSquareCharacter()));
             }
             System.out.println();
         }
