@@ -32,7 +32,7 @@ public class Game {
 
     public void startGame() throws IOException {
         bf.randomPlacement(player1.getShipsCollection(), player1Board);
-        bf.randomPlacement(player2.getShipsCollection(), player2Board);
+        bf.manualPlacement(player2.getShipsCollection(), player2Board);
         while (true){
             PvPRound();
         }

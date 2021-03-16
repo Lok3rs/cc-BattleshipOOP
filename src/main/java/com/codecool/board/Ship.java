@@ -68,4 +68,8 @@ public class Ship {
             );
         }
     }
+
+    protected ShipType getShipType() {
+        return this.shipType;
+    }
 }
