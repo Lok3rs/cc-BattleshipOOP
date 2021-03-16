@@ -1,5 +1,6 @@
 package com.codecool.utils;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Input {
@@ -50,6 +51,11 @@ public class Input {
             if(userInput.equalsIgnoreCase("H")) {return 0;}
             else if(userInput.equalsIgnoreCase("V")) {return 1;}
         } while (true);
+    }
+
+    public void waitForEnter() throws IOException {
+        display.printMessage("Type ENTER to continue...");
+        System.in.read();
     }
 
 }

@@ -17,7 +17,7 @@ public class Ship {
 
     public Ship(ShipType shipType) {
         this.shipType = shipType;
-        this.shipContent = new ArrayList<Square>();
+        this.shipContent = new ArrayList<>();
     }
 
     public void placeShip(Square[][] gameBoard){
