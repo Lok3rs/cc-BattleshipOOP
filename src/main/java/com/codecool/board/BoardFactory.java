@@ -25,23 +25,27 @@ public class BoardFactory {
     }
 
     public void manualPlacement(ShipCollection ships, Board gameBoard) {
-        display.printMessage("Define position of your ships: ");
+        display.printMessage("\nDefine position of your ships: ");
         int[] shootCoords;
-
         int counter=1;
+        boolean firstTry;
 
         for(Ship ship: ships.getShips()) {
-            System.out.println("Defined ships with length: "+ship.getShipType());
+            firstTry=true;
+            display.printMessage("Define ship with length: "+ship.getShipType().getShipLength());
             do {
+                if(!firstTry) {display.printMessage("Wrong definition! Try again");}
                 ship.setShipOrientation(input.setShipOrientation() == 0 ? ShipOrientation.HORIZONTAL : ShipOrientation.VERTICAL);
                 shootCoords = input.getCoordinates();
-                ship.setShipBowX(shootCoords[0]);
-                ship.setShipBowY(shootCoords[1]);
+                ship.setShipBowX(shootCoords[1]);
+                ship.setShipBowY(shootCoords[0]);
                 ship.setShipContent();
+                firstTry=false;
             } while (!gameBoard.isPlacementOk(ship));
-            System.out.println("Defined ships: "+counter+"/5\n");
+            display.printMessage("Defined ships: "+counter+"/5\n");
             counter++;
             ship.placeShip(gameBoard.getGameBoard());
+            display.showGameBoard(gameBoard.getGameBoard());
         }
     }
 }
