@@ -72,23 +72,25 @@ public class Battleship {
         display.showComputerPlayerDifficultyOptions();
         int option = input.getOption();
         Player[] players = new Player[2];
-        players[0] = new HumanPlayer();
 
         switch (option) {
             case 1:
+                players[0] = new HumanPlayer();
                 players[1] = new ComputerPlayerEasy();
                 prepareGame(players, handleShipPlacementMenu());
                 break;
             case 2:
+                players[0] = new HumanPlayer();
                 players[1] = new ComputerPlayerMedium();
                 prepareGame(players, handleShipPlacementMenu());
                 break;
             case 3:
+                players[0] = new HumanPlayer();
                 players[1] = new ComputerPlayerHard();
                 prepareGame(players, handleShipPlacementMenu());
                 break;
             case 0:
-                handleGameMenu();
+                handleMainMenu();
                 break;
         }
         return players;
@@ -106,7 +108,7 @@ public class Battleship {
             case 2:
                 shipPlacement = "random";
                 break;
-            case 3:
+            case 0:
                 handleMainMenu();
                 break;
         }
