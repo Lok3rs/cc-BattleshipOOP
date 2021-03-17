@@ -13,8 +13,27 @@ public class Square {
         this.squareStatus = squareStatus;
     }
 
-    public char getSquareCharacter(){
-        return (char) squareStatus.getSquareUnicode();
+    public String getSquareCharacter(){
+        char squareSymbol = (char) squareStatus.getSquareUnicode();
+        String returnableString;
+        switch (squareStatus){
+            case HIT -> {
+                returnableString = String.format("\u001B[33m%s\u001B[0m ", squareSymbol);
+            }
+            case SUNK -> {
+                returnableString = String.format("\u001B[31m%s\u001B[0m ", squareSymbol);
+            }
+            case SHIP -> {
+                returnableString = String.format("\u001B[32m%s\u001B[0m ", squareSymbol);
+            }
+            case MISSED -> {
+                returnableString = String.format("\u001B[37m%s\u001B[0m ", squareSymbol);
+            }
+            default -> {
+                returnableString = String.format("\u001B[34m%s\u001B[0m ", squareSymbol);
+            }
+        }
+        return returnableString;
     }
 
     public SquareStatus getSquareStatus() {

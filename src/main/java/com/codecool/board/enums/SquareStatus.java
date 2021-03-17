@@ -2,7 +2,7 @@ package com.codecool.board.enums;
 
 public enum SquareStatus {
 
-    EMPTY(0), SHIP(1), HIT(2), MISSED(3);
+    EMPTY(0), SHIP(1), HIT(2), MISSED(3), SUNK(4);
 
     private final int squareStatusCode;
 
@@ -18,7 +18,7 @@ public enum SquareStatus {
             case 1 -> {
                 return 0x25A9;
             }
-            case 2 -> {
+            case 2, 4 -> {
                 return 0x25A3;
             }
             case 3 -> {

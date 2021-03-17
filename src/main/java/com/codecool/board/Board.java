@@ -109,4 +109,44 @@ public class Board {
             return checkIfSunkLeft(y, x - 1);
         }
     }
+
+    public void markSunk(Square[][] shootingBoard, int y, int x){
+        markSunkTop(shootingBoard, y, x);
+        markSunkBottom(shootingBoard, y, x);
+        markSunkRight(shootingBoard, y, x);
+        markSunkLeft(shootingBoard, y, x);
+    }
+
+    private void markSunkTop(Square[][] shootingBoard, int y, int x){
+
+        while ((gameBoard[y][x].getSquareStatus() == SquareStatus.HIT || gameBoard[y][x].getSquareStatus() == SquareStatus.SUNK) && y > 0 ){
+            gameBoard[y][x].setSquareStatus(SquareStatus.SUNK);
+            shootingBoard[y][x].setSquareStatus(SquareStatus.SUNK);
+            y--;
+        }
+    }
+
+    private void markSunkBottom(Square[][] shootingBoard, int y, int x){
+        while ((gameBoard[y][x].getSquareStatus() == SquareStatus.HIT || gameBoard[y][x].getSquareStatus() == SquareStatus.SUNK) && y < gameBoard.length - 1 ){
+            gameBoard[y][x].setSquareStatus(SquareStatus.SUNK);
+            shootingBoard[y][x].setSquareStatus(SquareStatus.SUNK);
+            y++;
+        }
+    }
+
+    private void markSunkLeft(Square[][] shootingBoard, int y, int x){
+        while ((gameBoard[y][x].getSquareStatus() == SquareStatus.HIT || gameBoard[y][x].getSquareStatus() == SquareStatus.SUNK) && x > 0 ){
+            gameBoard[y][x].setSquareStatus(SquareStatus.SUNK);
+            shootingBoard[y][x].setSquareStatus(SquareStatus.SUNK);
+            x--;
+        }
+    }
+
+    private void markSunkRight(Square[][] shootingBoard, int y, int x){
+        while ((gameBoard[y][x].getSquareStatus() == SquareStatus.HIT || gameBoard[y][x].getSquareStatus() == SquareStatus.SUNK) && x < gameBoard.length - 1 ){
+            gameBoard[y][x].setSquareStatus(SquareStatus.SUNK);
+            shootingBoard[y][x].setSquareStatus(SquareStatus.SUNK);
+            x++;
+        }
+    }
 }
