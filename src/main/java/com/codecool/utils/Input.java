@@ -41,6 +41,21 @@ public class Input {
         return scanner.next();
     }
 
+    public int getOption(){
+        boolean firstTry = true;
+        String userInput = "";
+        do{
+            display.printMessage(firstTry ? "Select option: " : "Invalid input, try again: ");
+            firstTry = false;
+            userInput = scanner.next().toUpperCase();
+        } while (!inputValidator.isValidOptionInput(userInput));
+        return Integer.parseInt(userInput);
+
+
+
+
+    }
+
     public void waitForEnter() throws IOException {
         display.printMessage("Type ENTER to continue...");
         System.in.read();

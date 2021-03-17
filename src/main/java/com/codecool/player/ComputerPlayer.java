@@ -1,6 +1,6 @@
 package com.codecool.player;
 
-public class ComputerPlayer extends Player{
+public abstract class ComputerPlayer extends Player{
 
 }
 
