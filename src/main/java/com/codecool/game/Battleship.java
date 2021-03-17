@@ -11,6 +11,7 @@ public class Battleship {
     public Display display = new Display();
 
     public Battleship() throws IOException {
+        display.printLogo();
         handleMainMenu();
     }
 
