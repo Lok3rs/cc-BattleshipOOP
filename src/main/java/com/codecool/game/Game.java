@@ -30,9 +30,17 @@ public class Game {
         this.player2 = player2;
     }
 
-    public void startGame() throws IOException {
+    public void startGameManualPlacement() throws IOException {
         bf.randomPlacement(player1.getShipsCollection(), player1Board);
         bf.manualPlacement(player2.getShipsCollection(), player2Board);
+        while (true){
+            PvPRound();
+        }
+    }
+
+    public void startGameRandomPlacement() throws IOException {
+        bf.randomPlacement(player1.getShipsCollection(), player1Board);
+        bf.randomPlacement(player2.getShipsCollection(), player2Board);
         while (true){
             PvPRound();
         }
@@ -49,5 +57,4 @@ public class Game {
         }
         return true;
     }
-
 }
