@@ -41,6 +41,19 @@ public class Input {
         return scanner.next();
     }
 
+    public int getOption(){
+        boolean firstTry = true;
+        String userInput = "";
+        do{
+            display.printMessage(firstTry ? "Select option: " : "Invalid input, try again: ");
+            firstTry = false;
+            userInput = scanner.next().toUpperCase();
+        } while (!inputValidator.isValidOptionInput(userInput));
+        return Integer.parseInt(userInput);
+
+
+
+
     public int setShipOrientation(){
         boolean firstTry = true;
         String userInput = "";
@@ -51,6 +64,7 @@ public class Input {
             if(userInput.equalsIgnoreCase("H")) {return 0;}
             else if(userInput.equalsIgnoreCase("V")) {return 1;}
         } while (true);
+
     }
 
     public void waitForEnter() throws IOException {

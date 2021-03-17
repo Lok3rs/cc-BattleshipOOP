@@ -5,7 +5,7 @@ public class InputValidator {
 
     private final int gameBoardSize = 10;
 
-    public boolean isValidRowInput(String rowIdentifier){
+    public boolean isValidRowInput(String rowIdentifier) {
         int validRowInputLength = 1;
         boolean validRowLength = rowIdentifier.length() == validRowInputLength;
         if (!validRowLength) return false;
@@ -13,14 +13,23 @@ public class InputValidator {
         return rowId >= 'A' && rowId < 'A' + gameBoardSize;
     }
 
-    public boolean isValidColumnInput(String columnIdentifier){
+    public boolean isValidColumnInput(String columnIdentifier) {
         int columnId;
         try {
             columnId = Integer.parseInt(columnIdentifier);
-        }
-        catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             return true;
         }
         return columnId >= 1 && columnId <= gameBoardSize;
+    }
+
+    public boolean isValidOptionInput(String optionIdentifier) {
+        int optionId;
+        try {
+            optionId = Integer.parseInt(optionIdentifier);
+        } catch (NumberFormatException e) {
+            return true;
+        }
+        return optionId >= 0 && optionId <= 3;
     }
 }
