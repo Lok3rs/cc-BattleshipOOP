@@ -20,30 +20,29 @@ public class Ship {
         this.shipContent = new ArrayList<>();
     }
 
-    public void placeShip(Square[][] gameBoard){
-        for (int i = 0; i < this.shipType.getShipLength(); i++){
+    public void placeShip(Square[][] gameBoard) {
+        for (int i = 0; i < this.shipType.getShipLength(); i++) {
             if (this.shipOrientation == ShipOrientation.HORIZONTAL) {
                 gameBoard[this.shipBowY][this.shipBowX + i].setSquareStatus(SquareStatus.SHIP);
             } else {
-                gameBoard[this.shipBowY + i][this.shipBowX ].setSquareStatus(SquareStatus.SHIP);
+                gameBoard[this.shipBowY + i][this.shipBowX].setSquareStatus(SquareStatus.SHIP);
             }
+        }
+    }
+
+    public void setShipContent() {
+        this.shipContent.clear();
+        for (int i = 0; i < this.shipType.getShipLength(); i++) {
+            this.shipContent.add(
+                    this.shipOrientation == ShipOrientation.HORIZONTAL ?
+                            new Square(this.shipBowY, this.shipBowX + i, SquareStatus.SHIP) :
+                            new Square(this.shipBowY + i, this.shipBowX, SquareStatus.SHIP)
+            );
         }
     }
 
     public List<Square> getShipContent() {
         return shipContent;
-    }
-
-    public ShipOrientation getShipOrientation() {
-        return shipOrientation;
-    }
-
-    public int getShipBowY() {
-        return shipBowY;
-    }
-
-    public int getShipBowX() {
-        return shipBowX;
     }
 
     public void setShipOrientation(ShipOrientation shipOrientation) {
@@ -58,16 +57,6 @@ public class Ship {
         this.shipBowX = shipBowX;
     }
 
-    public void setShipContent(){
-        this.shipContent.clear();
-        for (int i = 0; i < this.shipType.getShipLength(); i++){
-        this.shipContent.add(
-                this.shipOrientation == ShipOrientation.HORIZONTAL ?
-                        new Square(this.shipBowY, this.shipBowX + i, SquareStatus.SHIP) :
-                        new Square(this.shipBowY + i, this.shipBowX, SquareStatus.SHIP)
-            );
-        }
-    }
 
     protected ShipType getShipType() {
         return this.shipType;
