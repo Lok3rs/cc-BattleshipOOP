@@ -12,7 +12,8 @@ import java.util.Properties;
 
 public class Highscore {
 
-    private final Connection conn = new Connection();
+    Display display = new Display();
+    private final Connection conn = new Connection(display);
 
 
     public Highscore(){
