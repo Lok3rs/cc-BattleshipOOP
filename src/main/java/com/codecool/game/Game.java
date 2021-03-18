@@ -17,7 +17,7 @@ public class Game {
     private final Player player2;
     private final Display display = new Display();
     private final Input input = new Input();
-    private final BoardFactory bf = new BoardFactory();
+    private final BoardFactory bf = new BoardFactory(display, input);
 
     private final Board player1Board = new Board();
     private final Board player1ShootingBoard = new Board();

@@ -39,16 +39,15 @@ public class Board {
 
     private boolean isAdjacentToAnotherBoat(Ship ship){
         List<Square> shipPieces = ship.getShipContent();
-        int counter = 0;
         for (Square shipPiece : shipPieces){
             int currentY = shipPiece.getY();
             int currentX = shipPiece.getX();
-            boolean isFirstElement = counter == 0;
-            boolean isLastElement = counter == shipPieces.size() - 1;
-            boolean isInFirstRow = shipPiece.getY() == 0;
-            boolean isInLastRow = shipPiece.getY() == gameBoard.length - 1;
-            boolean isInFirstColumn = shipPiece.getX() == 0;
-            boolean isInLastColumn = shipPiece.getX() == gameBoard.length - 1;
+            boolean isFirstElement = shipPieces.indexOf(shipPiece) == 0;
+            boolean isLastElement = shipPieces.indexOf(shipPiece) == shipPieces.size() - 1;
+            boolean isInFirstRow = currentY == 0;
+            boolean isInLastRow = currentY == gameBoard.length - 1;
+            boolean isInFirstColumn = currentX == 0;
+            boolean isInLastColumn = currentX == gameBoard[currentY].length - 1;
             boolean isAdjacentOnLeft = !isInFirstColumn && isFieldFilled(currentY, currentX - 1);
             boolean isAdjacentOnRight = !isInLastColumn && isFieldFilled(currentY, currentX + 1);
             boolean idAdjacentOnTop = isFirstElement && !isInFirstRow && isFieldFilled(currentY - 1, currentX);
@@ -59,17 +58,23 @@ public class Board {
             boolean isAdjacentBottomRight = isLastElement && !isInLastRow && !isInLastColumn && isFieldFilled(currentY + 1, currentX + 1);
             boolean isAdjacentAnywhere = isAdjacentOnRight || isAdjacentOnLeft || idAdjacentOnTop || isAdjacentOnBottom || isAdjacentTopLeft || isAdjacentTopRight || isAdjacentBottomLeft || isAdjacentBottomRight;
             if (isAdjacentAnywhere) return true;
-            counter++;
         }
         return false;
     }
 
-    private boolean isFieldFilled(int y, int x){
-        return gameBoard[y][x].getSquareStatus() != SquareStatus.EMPTY;
-    }
-
     public boolean isShipSunk(int y, int x){
         return checkIfSunkTop(y, x) && checkIfSunkRight(y, x) && checkIfSunkBottom(y, x) && checkIfSunkLeft(y, x);
+    }
+
+    public void markSunk(Square[][] shootingBoard, int y, int x){
+        markSunkTop(shootingBoard, y, x);
+        markSunkBottom(shootingBoard, y, x);
+        markSunkRight(shootingBoard, y, x);
+        markSunkLeft(shootingBoard, y, x);
+    }
+
+    private boolean isFieldFilled(int y, int x){
+        return gameBoard[y][x].getSquareStatus() != SquareStatus.EMPTY;
     }
 
     private boolean checkIfSunkTop(int y, int x){
@@ -110,43 +115,36 @@ public class Board {
         }
     }
 
-    public void markSunk(Square[][] shootingBoard, int y, int x){
-        markSunkTop(shootingBoard, y, x);
-        markSunkBottom(shootingBoard, y, x);
-        markSunkRight(shootingBoard, y, x);
-        markSunkLeft(shootingBoard, y, x);
-    }
-
     private void markSunkTop(Square[][] shootingBoard, int y, int x){
-
         while ((gameBoard[y][x].getSquareStatus() == SquareStatus.HIT || gameBoard[y][x].getSquareStatus() == SquareStatus.SUNK) && y > 0 ){
-            gameBoard[y][x].setSquareStatus(SquareStatus.SUNK);
-            shootingBoard[y][x].setSquareStatus(SquareStatus.SUNK);
+            setSunkStatus(shootingBoard,y, x);
             y--;
         }
     }
 
     private void markSunkBottom(Square[][] shootingBoard, int y, int x){
         while ((gameBoard[y][x].getSquareStatus() == SquareStatus.HIT || gameBoard[y][x].getSquareStatus() == SquareStatus.SUNK) && y < gameBoard.length - 1 ){
-            gameBoard[y][x].setSquareStatus(SquareStatus.SUNK);
-            shootingBoard[y][x].setSquareStatus(SquareStatus.SUNK);
+            setSunkStatus(shootingBoard, y, x);
             y++;
         }
     }
 
     private void markSunkLeft(Square[][] shootingBoard, int y, int x){
         while ((gameBoard[y][x].getSquareStatus() == SquareStatus.HIT || gameBoard[y][x].getSquareStatus() == SquareStatus.SUNK) && x > 0 ){
-            gameBoard[y][x].setSquareStatus(SquareStatus.SUNK);
-            shootingBoard[y][x].setSquareStatus(SquareStatus.SUNK);
+            setSunkStatus(shootingBoard, y, x);
             x--;
         }
     }
 
     private void markSunkRight(Square[][] shootingBoard, int y, int x){
         while ((gameBoard[y][x].getSquareStatus() == SquareStatus.HIT || gameBoard[y][x].getSquareStatus() == SquareStatus.SUNK) && x < gameBoard.length - 1 ){
-            gameBoard[y][x].setSquareStatus(SquareStatus.SUNK);
-            shootingBoard[y][x].setSquareStatus(SquareStatus.SUNK);
+            setSunkStatus(shootingBoard, y, x);
             x++;
         }
+    }
+
+    private void setSunkStatus(Square[][] shootingBoard, int y, int x){
+        gameBoard[y][x].setSquareStatus(SquareStatus.SUNK);
+        shootingBoard[y][x].setSquareStatus(SquareStatus.SUNK);
     }
 }
