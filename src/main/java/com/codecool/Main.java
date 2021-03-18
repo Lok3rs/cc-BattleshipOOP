@@ -14,20 +14,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        //Battleship battleship = new Battleship();
-
-        /////////////////////   /////////////////////   /////////////////////   /////////////////////
-//PvC
-/*        Player newPlayer1 = new HumanPlayer();
-        ComputerPlayer newPlayer2 = new ComputerPlayerMedium();
-        Game newGame = new Game(newPlayer1, newPlayer2);
-        newGame.startGame();*/
-
-//CvC
-        Player newPlayer1 = new ComputerPlayerMedium();
-        ComputerPlayer newPlayer2 = new ComputerPlayerMedium();
-        Game newGame = new Game(newPlayer1, newPlayer2);
-        newGame.startGame();
+        Battleship battleship = new Battleship();
 
     }
 }

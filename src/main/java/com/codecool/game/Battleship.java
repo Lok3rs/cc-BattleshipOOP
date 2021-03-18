@@ -62,6 +62,9 @@ public class Battleship {
             case 2:
                 handleComputerPlayerDifficultyMenu();
                 break;
+            case 3:
+                handleComputerPlayersMenu();
+                break;
             case 0:
                 handleMainMenu();
                 break;
@@ -87,6 +90,35 @@ public class Battleship {
                 break;
             case 3:
                 players[0] = new HumanPlayer();
+                players[1] = new ComputerPlayerHard();
+                prepareGame(players, handleShipPlacementMenu());
+                break;
+            case 0:
+                handleMainMenu();
+                break;
+        }
+        return players;
+    }
+
+    public Player[] handleComputerPlayersMenu() throws IOException {
+        //TODO: display.showComputerPlayerDifficultyOptions();
+        System.out.println("Chose computers level");
+        int option = input.getOption();
+        Player[] players = new Player[2];
+
+        switch (option) {
+            case 1:
+                players[0] = new ComputerPlayerEasy();
+                players[1] = new ComputerPlayerEasy();
+                prepareGame(players, handleShipPlacementMenu());
+                break;
+            case 2:
+                players[0] = new ComputerPlayerEasy();
+                players[1] = new ComputerPlayerMedium();
+                prepareGame(players, handleShipPlacementMenu());
+                break;
+            case 3:
+                players[0] = new ComputerPlayerEasy();
                 players[1] = new ComputerPlayerHard();
                 prepareGame(players, handleShipPlacementMenu());
                 break;
