@@ -6,11 +6,11 @@ public abstract class ComputerPlayer extends Player{
     private final Random random = new Random();
 
     public int getRandomNumber(){
-        int randomNumber = random.nextInt(10) -1;
+        int randomNumber = random.nextInt(9);
         return randomNumber;
     }
     public int[] getRandomCoordinates(){
-        return new int[]{random.nextInt(10), random.nextInt(10)};
+        return new int[]{random.nextInt(9), random.nextInt(9)};
     }
 }
 
