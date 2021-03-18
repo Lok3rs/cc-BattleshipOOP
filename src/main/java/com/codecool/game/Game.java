@@ -4,7 +4,6 @@ import com.codecool.board.Board;
 import com.codecool.board.BoardFactory;
 import com.codecool.board.Square;
 import com.codecool.board.enums.SquareStatus;
-import com.codecool.player.ComputerPlayer;
 import com.codecool.player.HumanPlayer;
 import com.codecool.player.Player;
 import com.codecool.utils.Display;
@@ -31,19 +30,15 @@ public class Game {
         this.player2 = player2;
     }
 
-    public Game(Player player1, ComputerPlayer playerComp){
-        this.player1 = player1;
-        this.player2 = playerComp;
-        System.out.println("game with computer start!");
+    public void startGameManualPlacement() throws IOException {
+        bf.randomPlacement(player1.getShipsCollection(), player1Board);
+        bf.manualPlacement(player2.getShipsCollection(), player2Board);
+        while (true){
+            PvPRound();
+        }
     }
 
-    public Game(ComputerPlayer playerComp1, ComputerPlayer playerComp2){
-        this.player1 = playerComp1;
-        this.player2 = playerComp2;
-        System.out.println("game computer VS computer start!");
-    }
-
-    public void startGame() throws IOException {
+    public void startGameRandomPlacement() throws IOException {
         bf.randomPlacement(player1.getShipsCollection(), player1Board);
         bf.randomPlacement(player2.getShipsCollection(), player2Board);
         while (true){
@@ -62,5 +57,4 @@ public class Game {
         }
         return true;
     }
-
 }

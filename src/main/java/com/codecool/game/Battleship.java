@@ -11,7 +11,20 @@ public class Battleship {
     public Display display = new Display();
 
     public Battleship() throws IOException {
+        display.printLogo();
         handleMainMenu();
+    }
+
+    public void prepareGame(Player[] players, String shipPlacement) throws IOException {
+        Player player1 = players[0];
+        Player player2 = players[1];
+        Game game = new Game(player1, player2);
+
+        if (shipPlacement == "manual") {
+            game.startGameManualPlacement();
+        } else {
+            game.startGameRandomPlacement();
+        }
     }
 
     public void handleMainMenu() throws IOException {
@@ -35,17 +48,17 @@ public class Battleship {
 
     }
 
-    public void handleGameMenu() throws IOException {
+    public Player[] handleGameMenu() throws IOException {
         display.showStartGameOptions();
         int option = input.getOption();
+        Player[] players = new Player[2];
 
         switch (option) {
             case 1:
-                Player humanPlayer1 = new HumanPlayer();
-                Player humanPlayer2 = new HumanPlayer();
-                Game game = new Game(humanPlayer1, humanPlayer2);
-                game.startGame();
-//                handleShipPlacementMenu();
+                players[0] = new HumanPlayer();
+                players[1] = new HumanPlayer();
+                prepareGame(players, handleShipPlacementMenu());
+                break;
             case 2:
                 handleComputerPlayerDifficultyMenu();
                 break;
@@ -53,41 +66,55 @@ public class Battleship {
                 handleMainMenu();
                 break;
         }
+        return players;
     }
 
-    public void handleComputerPlayerDifficultyMenu() throws IOException {
+    public Player[] handleComputerPlayerDifficultyMenu() throws IOException {
         display.showComputerPlayerDifficultyOptions();
         int option = input.getOption();
-        Player humanPlayer = new HumanPlayer();
+        Player[] players = new Player[2];
 
         switch (option) {
             case 1:
-                Player computerPlayerEasy = new ComputerPlayerEasy();
-//                handleShipPlacementMenu();
+                players[0] = new HumanPlayer();
+                players[1] = new ComputerPlayerEasy();
+                prepareGame(players, handleShipPlacementMenu());
                 break;
             case 2:
-                Player computerPlayerMedium = new ComputerPlayerMedium();
-//                handleShipPlacementMenu();
+                players[0] = new HumanPlayer();
+                players[1] = new ComputerPlayerMedium();
+                prepareGame(players, handleShipPlacementMenu());
                 break;
             case 3:
-                Player computerPlayerHard = new ComputerPlayerHard();
-//                handleShipPlacementMenu();
+                players[0] = new HumanPlayer();
+                players[1] = new ComputerPlayerHard();
+                prepareGame(players, handleShipPlacementMenu());
                 break;
             case 0:
-                handleGameMenu();
+                handleMainMenu();
                 break;
         }
-
+        return players;
     }
 
-//    public void handleShipPlacementMenu() {
-//        display.showPlacementOptions();
-//        int option = input.getOption();
-//
-//        switch (option) {
-//            case 1: Game newGame = new Game();
-//        }
-//    }
+    public String handleShipPlacementMenu() throws IOException {
+        display.showPlacementOptions();
+        int option = input.getOption();
+        String shipPlacement = "";
+
+        switch (option) {
+            case 1:
+                shipPlacement = "manual";
+                break;
+            case 2:
+                shipPlacement = "random";
+                break;
+            case 0:
+                handleMainMenu();
+                break;
+        }
+        return shipPlacement;
+    }
 
 }
 

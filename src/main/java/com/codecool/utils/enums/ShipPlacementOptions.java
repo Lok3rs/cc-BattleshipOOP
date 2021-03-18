@@ -1,7 +1,7 @@
 package com.codecool.utils.enums;
 
 public enum ShipPlacementOptions {
-    MANUAL("1 - Manual"), RANDOM("2 - Random"), BACK("0 - Back");
+    MANUAL("1 - Manual"), RANDOM("2 - Random"), BACK("0 - Back to main menu");
 
     private final String option;
 
