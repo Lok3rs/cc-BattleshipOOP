@@ -5,24 +5,26 @@ import com.codecool.utils.Display;
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Properties;
 
 public class Highscore {
 
-    public final String DRIVER = "org.sqlite.JDBC";
-    public final String DB_URL = "org.sqlite.highscores.db";
+//    public final String DRIVER = "C:\\postgresql-42.2.19\\postgresql-42.2.19.jar";
+    public final String DB_URL = "jdbc:postgresql://localhost/scores?user=postgres&password=z3xjek39";
+
 
     private Connection conn;
     private Statement stat;
     private final Display display = new Display();
 
     public Highscore(){
-        try {
-            Class.forName(this.DRIVER);
-        }
-        catch(ClassNotFoundException e){
-            display.printMessage("No JDBC driver found");
-            e.printStackTrace();
-        }
+//        try {
+//            Class.forName(this.DRIVER);
+//        }
+//        catch(ClassNotFoundException e){
+//            display.printMessage("No JDBC driver found");
+//            e.printStackTrace();
+//        }
 
 
         try {
@@ -38,7 +40,7 @@ public class Highscore {
     }
 
     public boolean createTables(){
-        String createQuery = "CREATE TABLE IF NOT EXISTS highscores (id INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR(255), highscore INT)";
+        String createQuery = "CREATE TABLE IF NOT EXISTS highscores (id SERIAL PRIMARY KEY, username VARCHAR(255), highscore INT)";
 
         try{
             stat.execute(createQuery);
@@ -78,7 +80,7 @@ public class Highscore {
     }
 
     public boolean createNewUser(String username, int highscore){
-        String query = String.format("INSERT INTO highscores (username, highscore) VALUES (%s, %d)", username, highscore);
+        String query = String.format("INSERT INTO \"highscores\" (\"username\", \"highscore\") VALUES ('%s', %d)", username, highscore);
 
         try{
             stat.execute(query);

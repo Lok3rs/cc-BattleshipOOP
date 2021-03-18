@@ -18,9 +18,6 @@ public class Main {
 
 //        Battleship battleship = new Battleship();
         Highscore highscore = new Highscore();
-
-        highscore.createNewUser("Maciek", 100);
-        highscore.createNewUser("Tomek", 200);
         highscore.createNewUser("Maciek", 100);
 
         highscore.closeConnection();
