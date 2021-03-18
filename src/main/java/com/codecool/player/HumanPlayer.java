@@ -35,15 +35,18 @@ public class HumanPlayer extends Player {
                 shootingBoard[targetY][targetX].setSquareStatus(SquareStatus.HIT);
                 enemyBoard[targetY][targetX].setSquareStatus(SquareStatus.HIT);
                 display.printMessage(boardEnemy.isShipSunk(targetY, targetX) ? "Hit and sunk!" : "Hit!");
+                this.score += 2;
                 if (boardEnemy.isShipSunk(targetY, targetX)){
 //                    shootingBoard[targetY][targetX].setSquareStatus(SquareStatus.SUNK);
 //                    enemyBoard[targetY][targetX].setSquareStatus(SquareStatus.SUNK);
                     boardEnemy.markSunk(shootingBoard, targetY, targetX);
+                    this.score += 10;
                 }
             }
         }
         display.clearScreen();
         display.showGameBoard(shootingBoard);
+        display.printMessage(String.format("Your current score is: %d", getScore()));
         input.waitForEnter();
     }
 }

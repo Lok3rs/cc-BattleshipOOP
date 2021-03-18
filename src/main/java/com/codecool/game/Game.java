@@ -36,7 +36,11 @@ public class Game {
         while (!isGameOver(player1Board.getGameBoard()) && !isGameOver(player2Board.getGameBoard())){
             round();
         }
-        display.printWinnerAsciiArt(getWinner());
+        Player winner = getWinner();
+        winner.increaseScore();
+        display.printWinnerAsciiArt(winner);
+        player1.saveScore();
+        if (player2.getClass().equals(HumanPlayer.class)) player2.saveScore();
     }
 
     public void startGameRandomPlacement() throws IOException {
@@ -45,7 +49,11 @@ public class Game {
         while (!isGameOver(player1Board.getGameBoard()) && !isGameOver(player2Board.getGameBoard())){
             round();
         }
-        display.printWinnerAsciiArt(getWinner());
+        Player winner = getWinner();
+        winner.increaseScore();
+        display.printWinnerAsciiArt(winner);
+        player1.saveScore();
+        if (player2.getClass().equals(HumanPlayer.class)) player2.saveScore();
     }
 
     public void round() throws IOException {
@@ -61,7 +69,7 @@ public class Game {
     }
 
     public Player getWinner(){
-        if (isGameOver(player1Board.getGameBoard())) return player1;
+        if (isGameOver(player2Board.getGameBoard())) return player1;
         return player2;
     }
 }

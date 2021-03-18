@@ -3,6 +3,8 @@ package com.codecool.utils;
 import com.codecool.board.Board;
 import com.codecool.board.Square;
 import com.codecool.board.enums.SquareStatus;
+import com.codecool.highscores.Highscore;
+import com.codecool.highscores.User;
 import com.codecool.player.Player;
 import com.codecool.utils.enums.ComputerPlayerDifficultyOptions;
 import com.codecool.utils.enums.MainMenuOptions;
@@ -21,21 +23,6 @@ public class Display {
     private final ComputerPlayerDifficultyOptions[] computerPlayerDifficultyOptions = ComputerPlayerDifficultyOptions.values();
     private final ShipPlacementOptions[] shipPlacementOptions = ShipPlacementOptions.values();
 
-    public void printMenu() {
-        printLogo();
-        showMainMenuOptions();
-        showStartGameOptions();
-        showComputerPlayerDifficultyOptions();
-        List<List> scores = new ArrayList<>();
-        scores.add(Arrays.asList("Bob", "100"));
-        scores.add(Arrays.asList("John", "200"));
-        scores.add(Arrays.asList("Emma", "300"));
-        showHighscores(scores);
-        Board newBoard = new Board();
-        showGameBoard(newBoard.getGameBoard());
-        showPlacementOptions();
-
-    }
 
     public void printMessage(String message){
         System.out.println(message);
@@ -104,17 +91,17 @@ public class Display {
         System.out.println(borderLine);
     }
 
-    public void showHighscores(List<List> scores){
-        final int nameIndex = 0;
-        final int scoreIndex = 1;
+    public void showHighscores(List<User> highscores){
+//        final int nameIndex = 0;
+//        final int scoreIndex = 1;
         final String sepLine = tabs + "|--------------+-----------|";
         System.out.println(borderLine);
         System.out.printf(tabs + "|   %-10s |   %5s   |\n", "Name", "Score");
-        if (scores.size() > 0){
+        if (highscores.size() > 0){
             System.out.println(sepLine);
-            for (var score : scores){
-                System.out.printf(tabs + "|   %-10s |   %5s   |\n", score.get(nameIndex), score.get(scoreIndex));
-                if (scores.indexOf(score) != scores.size() - 1){
+            for (User user : highscores){
+                System.out.printf(tabs + "|   %-10s |   %5s   |\n", user.getUsername(), user.getScore());
+                if (highscores.indexOf(user) != highscores.size() - 1){
                     System.out.println(sepLine);
                 }
             }
