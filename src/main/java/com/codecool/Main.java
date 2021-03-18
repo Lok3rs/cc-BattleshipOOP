@@ -28,7 +28,7 @@ public class Main {
         newGame.startGame();*/
 
 //CvC
-        Player newPlayer1 = new ComputerPlayerEasy();
+        Player newPlayer1 = new ComputerPlayerMedium();
         ComputerPlayer newPlayer2 = new ComputerPlayerMedium();
         Game newGame = new Game(newPlayer1, newPlayer2);
         newGame.startGame();
