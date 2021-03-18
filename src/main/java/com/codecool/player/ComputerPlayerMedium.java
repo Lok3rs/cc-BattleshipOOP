@@ -7,26 +7,23 @@ import com.codecool.utils.Input;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ComputerPlayerMedium extends ComputerPlayer {
     int BOARD_SIZE = 10;
     protected final String name="ComputerMedium";
     private ArrayList<int[]> ShootStory= new ArrayList<int[]>();
-    boolean checkAround = false;
-    int[] checkAroundCoords = {0,0};
-    int[] checkAroundState={0,1,2,3,4,0};
-    int checkState=checkAroundState[0];
-    int[] shootCoords = {0,0};
-    int[] oldCoords;
+    boolean checkAround = false;  //control when AI algorithm is used
+    int[] checkAroundState={0,1,2,3,4,0};  //state of shoots directions: 0=random,1=-V,2=+V,3=-H,4=+H
+    int checkState=checkAroundState[0]; //checkState - variable to control current algorithm stage
+    int[] shootCoords;
+    int[] firstHitCoords;  //variable used to keep 1st hit coords, important when algorithm changes a stage
 
     @Override
     public void handleShoot(Board boardShooting, Board boardEnemy) throws IOException {
     final Input input = new Input();
 
     if(!checkAround) { shootCoords = super.getRandomCoordinates();
-        System.out.println("FULL RANDOM");} else { shootCoords = getAroundCoords(shootCoords,checkState);}
-
+        System.out.println("FULL RANDOM1");} else { shootCoords = getAroundCoords(shootCoords,checkState);}
     int targetY = shootCoords[0];
     int targetX = shootCoords[1];
 
@@ -44,7 +41,8 @@ public class ComputerPlayerMedium extends ComputerPlayer {
 
     while (shootingBoard[targetY][targetX].getSquareStatus() != SquareStatus.EMPTY){
         display.printMessage("You have already shoot there.");
-        shootCoords = super.getRandomCoordinates();
+        if(!checkAround) { shootCoords = super.getRandomCoordinates();
+            System.out.println("FULL RANDOM");} else { shootCoords = getAroundCoords(shootCoords,checkState=checkAroundState[checkState+1]);}
         targetY = shootCoords[0];
         targetX = shootCoords[1];
     }
@@ -52,21 +50,23 @@ public class ComputerPlayerMedium extends ComputerPlayer {
     switch (enemyBoard[targetY][targetX].getSquareStatus()) {
         case EMPTY -> {
             System.out.println("checkAROUNDDDDD "+checkAround);
-            if(checkAround==true) {checkState=checkAroundState[checkState+1];shootCoords=oldCoords;}
-            if(checkAround==true && checkState==checkAroundState[5]){checkAround=false;checkState=0;}
+            if(checkAround) {checkState=checkAroundState[checkState+1];shootCoords= firstHitCoords;}
+            if(checkAround && checkState==checkAroundState[5]){checkAround=false;checkState=0;}
             display.printMessage("Computer missed.");
             shootingBoard[targetY][targetX].setSquareStatus(SquareStatus.MISSED);
             break;
         }
         case SHIP -> {
             checkAround=true;
-            checkAroundCoords = shootCoords;
-            if(checkState==checkAroundState[0]) {checkState=checkAroundState[1];oldCoords=shootCoords;} //first shot on target
+            if(checkState==checkAroundState[0]) {checkState=checkAroundState[1];
+                firstHitCoords =shootCoords;} //first shot on target
             shootingBoard[targetY][targetX].setSquareStatus(SquareStatus.HIT);
             enemyBoard[targetY][targetX].setSquareStatus(SquareStatus.HIT);
             display.printMessage(boardEnemy.isShipSunk(targetY, targetX) ? "Hit and sunk!" : "Hit!");
             if (boardEnemy.isShipSunk(targetY, targetX)){
                 boardEnemy.markSunk(shootingBoard, targetY, targetX);
+                checkAround=false;
+                checkState=checkAroundState[0];
             }
         }
     }
@@ -76,43 +76,42 @@ public class ComputerPlayerMedium extends ComputerPlayer {
     }
 
     public int[] getAroundCoords(int[] previous, int state ) {
-        //-1-H,+1+H,-2-V,+2+V,0random
-        System.out.println("OLD COORDS: "+(oldCoords[0]+1)+"|"+(oldCoords[1]+1));
+        //SWITCH to change state of shoots directions: 1=-V,2=+V,3=-H,4=+H,any=random
+        System.out.println("OLD COORDS: "+(firstHitCoords[0]+1)+"|"+(firstHitCoords[1]+1));
         System.out.println("PREVIOUS==>: "+(previous[0]+1)+"|"+(previous[1]+1));
-        System.out.println("checkAROUND==>: "+(checkAroundCoords[0]+1)+"|"+(checkAroundCoords[1]+1));
-        do {
+        do { //do while to make a correction(by continue) when current shoot out of board
             switch (state) {
                 case 1 -> {
                     System.out.println("CASE -V: X" + (previous[1] + 1) + " Y" + (previous[0] + 1) + "=>" + previous[0]);
                     int[] nextCoords = {(previous[0] - 1), previous[1]};
-                    if (nextCoords[0] < 0) { previous = oldCoords;
+                    if (nextCoords[0] < 0) { previous = firstHitCoords;
                         System.out.println("korekta -V na +V");state=2;checkState = state;} else { return nextCoords; }
                     continue;
                 }
                 case 2 -> {
                     System.out.println("CASE +V: X" + (previous[1] + 1) + " Y" + (previous[0] + 1) + "=>" + (previous[0] + 2));
                     int[] nextCoords = {(previous[0] + 1), previous[1]};
-                    if (nextCoords[0] >= BOARD_SIZE) { previous = oldCoords;
+                    if (nextCoords[0] >= BOARD_SIZE) { previous = firstHitCoords;
                         System.out.println("korekta +V na -H");state=3;checkState = state;} else { return nextCoords; }
                     continue;
                 }
                 case 3 -> {
                     System.out.println("CASE -H: X" + (previous[1] + 1) + "=>" + (previous[0]) + " Y" + (previous[0] + 1));
                     int[] nextCoords = {(previous[0]), (previous[1] - 1)};
-                    if (nextCoords[1] < 0) { previous = oldCoords;
+                    if (nextCoords[1] < 0) { previous = firstHitCoords;
                         System.out.println("korekta -H na +H");state=4;checkState = state;} else { return nextCoords; }
                     continue;
                 }
                 case 4 -> {
                     System.out.println("CASE +H: X" + (previous[1] + 1) + "=>" + (previous[0] + 2) + " Y" + (previous[0] + 1));
                     int[] nextCoords = {(previous[0]), previous[1] + 1};
-                    if (nextCoords[1] >= BOARD_SIZE) { previous = oldCoords;
+                    if (nextCoords[1] >= BOARD_SIZE) { previous = firstHitCoords;
                         System.out.println("korekta +H na random");state=0;checkState = state;} else { return nextCoords; }
                     continue;
                 }
                 default -> {
                     System.out.println("CASE default");
-                    System.out.println("FULL RANDOM");
+                    System.out.println("FULL RANDOM2");
                     int[] nextCoords = super.getRandomCoordinates();
                     return nextCoords;
                 }
@@ -131,3 +130,13 @@ public class ComputerPlayerMedium extends ComputerPlayer {
         System.out.println();
     }
 }
+
+//Description:
+//1stage: random shots until hit a ship
+//2stage: shots in -V direction until end of ship or game board
+//3stage: shots in +V direction until end of ship or game board
+//4stage: shots in -H direction until end of ship or game board
+//5stage: shots in +H direction until end of ship or game board
+//in any stage, when ship is sunk, algorithm goes back to stage1
+//
+
