@@ -1,5 +1,6 @@
 package com.codecool.game;
 
+import com.codecool.highscores.Highscore;
 import com.codecool.player.*;
 import com.codecool.utils.Display;
 import com.codecool.utils.Input;
@@ -9,6 +10,7 @@ public class Battleship {
 
     public Input input = new Input();
     public Display display = new Display();
+    private final Highscore highscore = new Highscore();
 
     public Battleship() throws IOException {
         display.printLogo();
@@ -37,6 +39,7 @@ public class Battleship {
                 break;
             case 2:
                 handleShowHighscores();
+                handleMainMenu();
                 break;
             case 0:
                 System.exit(0);
@@ -44,8 +47,9 @@ public class Battleship {
         }
     }
 
-    public void handleShowHighscores(){
-
+    public void handleShowHighscores() throws IOException {
+        display.showHighscores(highscore.getAllScores());
+        input.waitForEnter();
     }
 
     public Player[] handleGameMenu() throws IOException {

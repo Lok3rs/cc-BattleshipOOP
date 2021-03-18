@@ -33,20 +33,30 @@ public class Game {
     public void startGameManualPlacement() throws IOException {
         bf.randomPlacement(player1.getShipsCollection(), player1Board);
         bf.manualPlacement(player2.getShipsCollection(), player2Board);
-        while (true){
-            PvPRound();
+        while (!isGameOver(player1Board.getGameBoard()) && !isGameOver(player2Board.getGameBoard())){
+            round();
         }
+        Player winner = getWinner();
+        winner.increaseScore();
+        display.printWinnerAsciiArt(winner);
+        player1.saveScore();
+        if (player2.getClass().equals(HumanPlayer.class)) player2.saveScore();
     }
 
     public void startGameRandomPlacement() throws IOException {
         bf.randomPlacement(player1.getShipsCollection(), player1Board);
         bf.randomPlacement(player2.getShipsCollection(), player2Board);
-        while (true){
-            PvPRound();
+        while (!isGameOver(player1Board.getGameBoard()) && !isGameOver(player2Board.getGameBoard())){
+            round();
         }
+        Player winner = getWinner();
+        winner.increaseScore();
+        display.printWinnerAsciiArt(winner);
+        player1.saveScore();
+        if (player2.getClass().equals(HumanPlayer.class)) player2.saveScore();
     }
 
-    public void PvPRound() throws IOException {
+    public void round() throws IOException {
         player1.handleShoot(player1ShootingBoard, player2Board);
         player2.handleShoot(player2ShootingBoard, player1Board);
     }
@@ -56,5 +66,10 @@ public class Game {
             if (Arrays.stream(row).map(Square::getSquareStatus).anyMatch(SquareStatus.SHIP::equals)) return false;
         }
         return true;
+    }
+
+    public Player getWinner(){
+        if (isGameOver(player2Board.getGameBoard())) return player1;
+        return player2;
     }
 }
