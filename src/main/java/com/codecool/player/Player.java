@@ -17,7 +17,7 @@ public abstract class Player {
     protected int score = 0;
     protected Input input = new Input();
     protected Display display = new Display();
-    protected final Highscore highscore = new Highscore();
+    protected final Highscore highscore = new Highscore(display);
 
     public Player() {
         this.name = input.getPlayerName();

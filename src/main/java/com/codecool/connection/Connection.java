@@ -57,5 +57,5 @@ public class Connection {
         String createQuery = "CREATE TABLE IF NOT EXISTS highscores (id SERIAL PRIMARY KEY, username VARCHAR(255), highscore INT)";
         executeQuery(createQuery);
     }
-    
+
 }
