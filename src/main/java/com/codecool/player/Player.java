@@ -44,9 +44,11 @@ public abstract class Player {
 
     public void handleShoot(Board shootingBoard, Board enemyBoard) throws IOException {
         display.clearScreen();
-        display.showGameBoard(enemyBoard.getGameBoard()); // for training purposes
-        display.showGameBoard(shootingBoard.getGameBoard());
-        display.printMessage(String.format("Shooting time! %s's turn\n", this.name));
+//        display.showGameBoard(enemyBoard.getGameBoard()); // for training purposes
+        if(this.getClass().equals(HumanPlayer.class)){
+            display.showGameBoard(shootingBoard.getGameBoard());
+            display.printMessage(String.format("Shooting time! %s's turn\n", this.name));
+        }
 
         getCoordsAndShoot(shootingBoard, enemyBoard);
 
@@ -67,13 +69,13 @@ public abstract class Player {
     protected void makeShot(Board enemyBoard, Board shootingBoard, int targetY, int targetX) {
         switch (enemyBoard.getGameBoard()[targetY][targetX].getSquareStatus()) {
             case EMPTY -> {
-                display.printMessage(this.getClass() == HumanPlayer.class ? "You missed." : "Computer missed.");
+                display.printMessage(this.getClass() == HumanPlayer.class ? "You missed.\n" : "Computer missed.\n");
                 shootingBoard.getGameBoard()[targetY][targetX].setSquareStatus(SquareStatus.MISSED);
             }
             case SHIP -> {
                 shootingBoard.getGameBoard()[targetY][targetX].setSquareStatus(SquareStatus.HIT);
                 enemyBoard.getGameBoard()[targetY][targetX].setSquareStatus(SquareStatus.HIT);
-                display.printMessage(enemyBoard.isShipSunk(targetY, targetX) ? "Hit and sunk!" : "Hit!");
+                display.printMessage(enemyBoard.isShipSunk(targetY, targetX) ? "Hit and sunk!\n" : "Hit!\n");
                 this.score += 2;
                 if (enemyBoard.isShipSunk(targetY, targetX)) {
                     enemyBoard.markSunk(shootingBoard.getGameBoard(), targetY, targetX);
