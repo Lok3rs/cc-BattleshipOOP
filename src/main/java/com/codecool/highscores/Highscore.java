@@ -18,11 +18,6 @@ public class Highscore {
         createTables();
     }
 
-    private void createTables() {
-        String createQuery = "CREATE TABLE IF NOT EXISTS highscores (id SERIAL PRIMARY KEY, username VARCHAR(255), highscore INT)";
-        conn.executeQuery(createQuery);
-    }
-
     public boolean findUser(String username) {
         String query = String.format("SELECT * FROM highscores WHERE username = '%s'", username);
         ResultSet user = conn.getResultSet(query);
@@ -60,5 +55,10 @@ public class Highscore {
             return null;
         }
         return highscores;
+    }
+
+    private void createTables() {
+        String createQuery = "CREATE TABLE IF NOT EXISTS highscores (id SERIAL PRIMARY KEY, username VARCHAR(255), highscore INT)";
+        conn.executeQuery(createQuery);
     }
 }

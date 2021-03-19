@@ -12,13 +12,6 @@ public class Board {
         createBoard();
     }
 
-    private void createBoard() {
-        for (int y = 0; y < gameBoard.length; y++) {
-            for (int x = 0; x < gameBoard[y].length; x++) {
-                gameBoard[y][x] = new Square(y, x, SquareStatus.EMPTY);
-            }
-        }
-    }
 
     public Square[][] getGameBoard() {
         return gameBoard;
@@ -26,6 +19,25 @@ public class Board {
 
     public boolean isPlacementOk(Ship ship) {
         return !isShipOutOfBounds(ship) && !isAdjacentToAnotherBoat(ship);
+    }
+
+    public boolean isShipSunk(int y, int x) {
+        return checkIfSunkTop(y, x) && checkIfSunkRight(y, x) && checkIfSunkBottom(y, x) && checkIfSunkLeft(y, x);
+    }
+
+    public void markSunk(Square[][] shootingBoard, int y, int x) {
+        markSunkTop(shootingBoard, y, x);
+        markSunkBottom(shootingBoard, y, x);
+        markSunkRight(shootingBoard, y, x);
+        markSunkLeft(shootingBoard, y, x);
+    }
+
+    private void createBoard() {
+        for (int y = 0; y < gameBoard.length; y++) {
+            for (int x = 0; x < gameBoard[y].length; x++) {
+                gameBoard[y][x] = new Square(y, x, SquareStatus.EMPTY);
+            }
+        }
     }
 
     private boolean isShipOutOfBounds(Ship ship) {
@@ -62,16 +74,6 @@ public class Board {
         return false;
     }
 
-    public boolean isShipSunk(int y, int x) {
-        return checkIfSunkTop(y, x) && checkIfSunkRight(y, x) && checkIfSunkBottom(y, x) && checkIfSunkLeft(y, x);
-    }
-
-    public void markSunk(Square[][] shootingBoard, int y, int x) {
-        markSunkTop(shootingBoard, y, x);
-        markSunkBottom(shootingBoard, y, x);
-        markSunkRight(shootingBoard, y, x);
-        markSunkLeft(shootingBoard, y, x);
-    }
 
     private boolean isFieldFilled(int y, int x) {
         return gameBoard[y][x].getSquareStatus() != SquareStatus.EMPTY;

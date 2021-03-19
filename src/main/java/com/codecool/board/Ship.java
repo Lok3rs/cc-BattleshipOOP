@@ -57,7 +57,6 @@ public class Ship {
         this.shipBowX = shipBowX;
     }
 
-
     protected ShipType getShipType() {
         return this.shipType;
     }

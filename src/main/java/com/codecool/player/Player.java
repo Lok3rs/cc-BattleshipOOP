@@ -84,7 +84,6 @@ public abstract class Player {
     }
 
     protected void getCoordsAndShoot(Board shootingBoard, Board enemyBoard) {
-
     }
 
 }
