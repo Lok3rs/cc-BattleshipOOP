@@ -11,6 +11,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         Battleship battleship = new Battleship();
+        battleship.startGame();
 
     }
 }

@@ -47,13 +47,13 @@ public abstract class Player {
         display.clearScreen();
         display.showGameBoard(enemyBoard.getGameBoard()); // for training purposes
         display.showGameBoard(shootingBoard.getGameBoard());
-        display.printMessage(String.format("Shooting time! %s turn", this.name));
+        display.printMessage(String.format("Shooting time! %s's turn\n", this.name));
 
         getCoordsAndShoot(shootingBoard, enemyBoard);
 
         display.clearScreen();
         display.showGameBoard(shootingBoard.getGameBoard());
-        display.printMessage(String.format("%s's current score is: %d", this.name, getScore()));
+        display.printMessage(String.format("%ss' current score is: %d\n", this.name, getScore()));
         input.waitForEnter();
     }
 
