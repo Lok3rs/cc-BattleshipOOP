@@ -44,14 +44,14 @@ public class Input {
         return scanner.next();
     }
 
-    public int getOption() {
+    public int getOption(int minVal, int maxVal) {
         boolean firstTry = true;
         String userInput;
         do {
             display.printMessage(firstTry ? "Select option: " : "Invalid input, try again: ");
             firstTry = false;
             userInput = scanner.next().toUpperCase();
-        } while (!inputValidator.isValidOptionInput(userInput.charAt(0), 1, 3) && userInput.length() > 1);
+        } while (!inputValidator.isValidOptionInput(userInput.charAt(0), minVal, maxVal) && userInput.length() > 1);
         return Integer.parseInt(userInput);
     }
 

@@ -13,17 +13,21 @@ public class BoardFactory {
     private final Display display;
     private final Input input;
 
-    public BoardFactory(Display display, Input input){
+    public BoardFactory(Display display, Input input) {
         this.display = display;
         this.input = input;
     }
 
-    public void chosePlacement(ShipCollection ships, Board gameBoard){
+    public void chosePlacement(ShipCollection ships, Board gameBoard, String playerName) {
         display.showPlacementOptions();
-        switch (input.)
+        display.printMessage(String.format("%s's turn.\n", playerName));
+        switch (input.getOption(1, 2)) {
+            case 1 -> manualPlacement(ships, gameBoard);
+            case 2 -> randomPlacement(ships, gameBoard);
+        }
     }
 
-    public void randomPlacement(ShipCollection ships, Board gameBoard) {
+    private void randomPlacement(ShipCollection ships, Board gameBoard) {
         for (Ship ship : ships.getShips()) {
             do {
                 ship.setShipOrientation(random.nextInt(2) == 0 ? ShipOrientation.HORIZONTAL : ShipOrientation.VERTICAL);
@@ -35,7 +39,7 @@ public class BoardFactory {
         }
     }
 
-    public void manualPlacement(ShipCollection shipsCollection, Board gameBoard) {
+    private void manualPlacement(ShipCollection shipsCollection, Board gameBoard) {
         final int yIndex = 0;
         final int xIndex = 1;
         int[] placementCoords;

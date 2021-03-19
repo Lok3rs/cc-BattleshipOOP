@@ -20,11 +20,11 @@ public class Display {
     private final ShipPlacementOptions[] shipPlacementOptions = ShipPlacementOptions.values();
 
 
-    public void printMessage(String message){
+    public void printMessage(String message) {
         System.out.print(tabs + message);
     }
 
-    public void printLogo(){
+    public void printLogo() {
         System.out.println("""
                                                      |__
                                                      |\\/
@@ -50,52 +50,52 @@ public class Display {
                 """);
     }
 
-    public void showMainMenuOptions(){
+    public void showMainMenuOptions() {
         System.out.println(borderLine);
         System.out.printf(tabs + "|         %-17s|%n", "Main Menu");
-        for (MainMenuOptions option : mainMenuOptions){
+        for (MainMenuOptions option : mainMenuOptions) {
             System.out.printf(tabs + "|    %-22s|%n", option.getOption());
         }
         System.out.println(borderLine);
     }
 
 
-    public void showStartGameOptions(){
+    public void showStartGameOptions() {
         System.out.println(borderLine);
         System.out.printf(tabs + "|    %-22s|%n", "Choose game option");
-        for (StartGameMenuOptions option : startGameMenuOptions){
+        for (StartGameMenuOptions option : startGameMenuOptions) {
             System.out.printf(tabs + "|   %-23s|%n", option.getOption());
         }
         System.out.println(borderLine);
     }
 
-    public void showComputerPlayerDifficultyOptions(){
+    public void showComputerPlayerDifficultyOptions() {
         System.out.println(borderLine);
         System.out.printf(tabs + "|  %-24s|%n", "Choose difficulty level");
-        for (ComputerPlayerDifficultyOptions option : computerPlayerDifficultyOptions){
+        for (ComputerPlayerDifficultyOptions option : computerPlayerDifficultyOptions) {
             System.out.printf(tabs + "|        %-18s|%n", option.getOption());
         }
         System.out.println(borderLine);
     }
 
-    public void showPlacementOptions(){
+    public void showPlacementOptions() {
         System.out.println(borderLine);
         System.out.printf(tabs + "|  %-24s|%n", "Choose placement method");
-        for (ShipPlacementOptions option : shipPlacementOptions){
+        for (ShipPlacementOptions option : shipPlacementOptions) {
             System.out.printf(tabs + "|   %-23s|%n", option.getOption());
         }
         System.out.println(borderLine);
     }
 
-    public void showHighscores(List<User> highscores){
+    public void showHighscores(List<User> highscores) {
         final String sepLine = tabs + "|--------------+-----------|";
         System.out.println(borderLine);
         System.out.printf(tabs + "|   %-10s |   %5s   |\n", "Name", "Score");
-        if (highscores.size() > 0){
+        if (highscores.size() > 0) {
             System.out.println(sepLine);
-            for (User user : highscores){
+            for (User user : highscores) {
                 System.out.printf(tabs + "|   %-10s |   %5s   |\n", user.getUsername(), user.getScore());
-                if (highscores.indexOf(user) != highscores.size() - 1){
+                if (highscores.indexOf(user) != highscores.size() - 1) {
                     System.out.println(sepLine);
                 }
             }
@@ -103,28 +103,20 @@ public class Display {
         System.out.println(borderLine);
     }
 
-    public void showGameBoard(Square[][] gameBoard){
+    public void showGameBoard(Square[][] gameBoard) {
         printColumnNumbers(gameBoard[0].length);
-        for (int i = 0; i < gameBoard.length; i++){
+        for (int i = 0; i < gameBoard.length; i++) {
             System.out.printf("%s%-2s", tabs, (char) (0x0041 + i));
-            for (int j = 0; j < gameBoard[i].length; j++){
+            for (int j = 0; j < gameBoard[i].length; j++) {
                 System.out.print(gameBoard[i][j].getSquareStatus() == SquareStatus.SUNK ?
-                       String.format("%2s",gameBoard[i][j].getSquareCharacter()):
-                        String.format("%2s",gameBoard[i][j].getSquareCharacter()));
+                        String.format("%2s", gameBoard[i][j].getSquareCharacter()) :
+                        String.format("%2s", gameBoard[i][j].getSquareCharacter()));
             }
             System.out.println();
         }
     }
 
-    private void printColumnNumbers(int gameBoardLength){
-        System.out.printf("%s ", tabs);
-        for (int i = 0; i < gameBoardLength; i++){
-            System.out.printf("%2s", (char) (0x24f5 + i));
-        }
-        System.out.println();
-    }
-
-    public void printWinnerAsciiArt(Player winner){
+    public void printWinnerAsciiArt(Player winner) {
         System.out.println("""
                                               (_v_)                  \s
                                                _|_                   \s
@@ -146,5 +138,14 @@ public class Display {
     public void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
+    }
+
+
+    private void printColumnNumbers(int gameBoardLength) {
+        System.out.printf("%s ", tabs);
+        for (int i = 0; i < gameBoardLength; i++) {
+            System.out.printf("%2s", (char) (0x24f5 + i));
+        }
+        System.out.println();
     }
 }

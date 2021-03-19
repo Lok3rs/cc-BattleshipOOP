@@ -22,17 +22,12 @@ public class Battleship {
         Player player1 = players[0];
         Player player2 = players[1];
         Game game = new Game(player1, player2, display, input);
-
-        if (shipPlacement == "manual") {
-            game.startGameManualPlacement();
-        } else {
-            game.startGameRandomPlacement();
-        }
+        game.startGame();
     }
 
     public void handleMainMenu() throws IOException {
         display.showMainMenuOptions();
-        int option = input.getOption();
+        int option = input.getOption(0, 2);
 
         switch (option) {
             case 1:
@@ -55,7 +50,7 @@ public class Battleship {
 
     public Player[] handleGameMenu() throws IOException {
         display.showStartGameOptions();
-        int option = input.getOption();
+        int option = input.getOption(0, 3);
         Player[] players = new Player[2];
 
         switch (option) {
@@ -79,7 +74,7 @@ public class Battleship {
 
     public Player[] handleComputerPlayerDifficultyMenu() throws IOException {
         display.showComputerPlayerDifficultyOptions();
-        int option = input.getOption();
+        int option = input.getOption(0, 3);
         Player[] players = new Player[2];
 
         switch (option) {
@@ -108,7 +103,7 @@ public class Battleship {
     public Player[] handleComputerPlayersMenu() throws IOException {
         //TODO: display.showComputerPlayerDifficultyOptions();
         System.out.println("Chose computers level");
-        int option = input.getOption();
+        int option = input.getOption(0, 3);
         Player[] players = new Player[2];
 
         switch (option) {
@@ -136,7 +131,7 @@ public class Battleship {
 
     public String handleShipPlacementMenu() throws IOException {
         display.showPlacementOptions();
-        int option = input.getOption();
+        int option = input.getOption(0, 3);
         String shipPlacement = "";
 
         switch (option) {
