@@ -1,16 +1,24 @@
 package com.codecool.player;
 
+import com.codecool.highscores.Highscore;
+import com.codecool.utils.Display;
+import com.codecool.utils.Input;
+
 import java.util.Random;
 
 public abstract class ComputerPlayer extends Player{
     private final Random random = new Random();
 
-    public int getRandomNumber(){
-        int randomNumber = random.nextInt(9);
-        return randomNumber;
+    public ComputerPlayer(Display display, Input input, Highscore highscore) {
+        super(display, input, highscore);
     }
-    public int[] getRandomCoordinates(){
-        return new int[]{random.nextInt(9), random.nextInt(9)};
+
+    protected int getRandomCord(){
+        return random.nextInt(10);
+    }
+
+    protected int[] getRandomCoordinates(){
+        return new int[]{getRandomCord(), getRandomCord()};
     }
 }
 

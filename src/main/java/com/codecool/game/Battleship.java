@@ -59,8 +59,8 @@ public class Battleship {
 
         switch (option) {
             case 1:
-                players[0] = new HumanPlayer();
-                players[1] = new HumanPlayer();
+                players[0] = new HumanPlayer(display, input, highscore);
+                players[1] = new HumanPlayer(display, input, highscore);
                 prepareGame(players, handleShipPlacementMenu());
                 break;
             case 2:
@@ -83,18 +83,18 @@ public class Battleship {
 
         switch (option) {
             case 1:
-                players[0] = new HumanPlayer();
-                players[1] = new ComputerPlayerEasy();
+                players[0] = new HumanPlayer(display, input, highscore);
+                players[1] = new ComputerPlayerEasy(display, input, highscore);
                 prepareGame(players, handleShipPlacementMenu());
                 break;
             case 2:
-                players[0] = new HumanPlayer();
-                players[1] = new ComputerPlayerMedium();
+                players[0] = new HumanPlayer(display, input, highscore);
+                players[1] = new ComputerPlayerMedium(display, input, highscore);
                 prepareGame(players, handleShipPlacementMenu());
                 break;
             case 3:
-                players[0] = new HumanPlayer();
-                players[1] = new ComputerPlayerHard();
+                players[0] = new HumanPlayer(display, input, highscore);
+                players[1] = new ComputerPlayerHard(display, input, highscore);
                 prepareGame(players, handleShipPlacementMenu());
                 break;
             case 0:
@@ -112,18 +112,18 @@ public class Battleship {
 
         switch (option) {
             case 1:
-                players[0] = new ComputerPlayerEasy();
-                players[1] = new ComputerPlayerEasy();
+                players[0] = new ComputerPlayerEasy(display, input, highscore);
+                players[1] = new ComputerPlayerEasy(display, input, highscore);
                 prepareGame(players, handleShipPlacementMenu());
                 break;
             case 2:
-                players[0] = new ComputerPlayerEasy();
-                players[1] = new ComputerPlayerMedium();
+                players[0] = new ComputerPlayerEasy(display, input, highscore);
+                players[1] = new ComputerPlayerMedium(display, input, highscore);
                 prepareGame(players, handleShipPlacementMenu());
                 break;
             case 3:
-                players[0] = new ComputerPlayerEasy();
-                players[1] = new ComputerPlayerHard();
+                players[0] = new ComputerPlayerEasy(display, input, highscore);
+                players[1] = new ComputerPlayerHard(display, input, highscore);
                 prepareGame(players, handleShipPlacementMenu());
                 break;
             case 0:

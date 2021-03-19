@@ -3,6 +3,8 @@ package com.codecool.player;
 import com.codecool.board.Board;
 import com.codecool.board.Square;
 import com.codecool.board.enums.SquareStatus;
+import com.codecool.highscores.Highscore;
+import com.codecool.utils.Display;
 import com.codecool.utils.Input;
 
 import java.io.IOException;
@@ -16,6 +18,10 @@ public class ComputerPlayerMedium extends ComputerPlayer {
     int checkState = checkAroundState[0]; //checkState - variable to control current algorithm stage
     int[] shootCoords;
     int[] firstHitCoords;  //variable used to keep 1st hit coords, important when algorithm changes a stage
+
+    public ComputerPlayerMedium(Display display, Input input, Highscore highscore) {
+        super(display, input, highscore);
+    }
 
     @Override
     public void handleShoot(Board boardShooting, Board boardEnemy) throws IOException {
