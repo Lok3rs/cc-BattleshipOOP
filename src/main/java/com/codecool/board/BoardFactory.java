@@ -18,6 +18,11 @@ public class BoardFactory {
         this.input = input;
     }
 
+    public void chosePlacement(ShipCollection ships, Board gameBoard){
+        display.showPlacementOptions();
+        switch (input.)
+    }
+
     public void randomPlacement(ShipCollection ships, Board gameBoard) {
         for (Ship ship : ships.getShips()) {
             do {

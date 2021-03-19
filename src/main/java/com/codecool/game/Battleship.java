@@ -21,7 +21,7 @@ public class Battleship {
     public void prepareGame(Player[] players, String shipPlacement) throws IOException {
         Player player1 = players[0];
         Player player2 = players[1];
-        Game game = new Game(player1, player2);
+        Game game = new Game(player1, player2, display, input);
 
         if (shipPlacement == "manual") {
             game.startGameManualPlacement();

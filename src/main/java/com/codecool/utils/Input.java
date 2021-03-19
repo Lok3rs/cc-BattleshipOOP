@@ -35,7 +35,7 @@ public class Input {
             display.printMessage(firstTry ? "Provide column index: " : "Invalid input, try again: ");
             firstTry = false;
             userInput = scanner.next().toUpperCase();
-        } while (!inputValidator.isValidColumnInput(userInput));
+        } while (!inputValidator.isValidColumnInput(userInput) && userInput.length() > 1);
         return Integer.parseInt(userInput) - 1;
     }
 
@@ -51,7 +51,7 @@ public class Input {
             display.printMessage(firstTry ? "Select option: " : "Invalid input, try again: ");
             firstTry = false;
             userInput = scanner.next().toUpperCase();
-        } while (!inputValidator.isValidOptionInput(userInput));
+        } while (!inputValidator.isValidOptionInput(userInput.charAt(0), 1, 3) && userInput.length() > 1);
         return Integer.parseInt(userInput);
     }
 

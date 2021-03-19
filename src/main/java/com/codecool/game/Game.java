@@ -15,9 +15,9 @@ import java.util.Arrays;
 public class Game {
     private final Player player1;
     private final Player player2;
-    private final Display display = new Display();
-    private final Input input = new Input(display);
-    private final BoardFactory bf = new BoardFactory(display, input);
+    private final Display display;
+    private final Input input;
+    private final BoardFactory bf;
 
     private final Board player1Board = new Board();
     private final Board player1ShootingBoard = new Board();
@@ -25,9 +25,12 @@ public class Game {
     private final Board player2Board = new Board();
     private final Board player2ShootingBoard = new Board();
 
-    public Game(Player player1, Player player2){
+    public Game(Player player1, Player player2, Display display, Input input){
         this.player1 = player1;
         this.player2 = player2;
+        this.display = display;
+        this.input = input;
+        this.bf = new BoardFactory(display, input);
     }
 
     public void startGameManualPlacement() throws IOException {
