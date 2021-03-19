@@ -6,7 +6,7 @@ public abstract class ComputerPlayer extends Player{
     private final Random random = new Random();
 
     public int getRandomNumber(){
-        int randomNumber = random.nextInt(10) -1;
+        int randomNumber = random.nextInt(10);
         return randomNumber;
     }
     public int[] getRandomCoordinates(){

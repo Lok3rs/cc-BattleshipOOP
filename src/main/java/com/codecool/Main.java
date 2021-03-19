@@ -14,7 +14,18 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        Battleship battleship = new Battleship();
+        //Battleship battleship = new Battleship();
+
+        ///////////////////
+        Player[] players = new Player[2];
+
+        players[0] = new ComputerPlayerHard();
+        players[1] = new ComputerPlayerHard();
+        Player player1 = players[0];
+        Player player2 = players[1];
+        Game game = new Game(player1, player2);
+        game.startGameRandomPlacement();
+        //////////////////
 
     }
 }
