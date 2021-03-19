@@ -32,4 +32,12 @@ public class InputValidator {
         }
         return optionId >= 0 && optionId <= 3;
     }
+
+    public boolean isValidOrientationIdentifier(String orientationIdentifier) {
+        try {
+            return Integer.parseInt(orientationIdentifier) == 1 || Integer.parseInt(orientationIdentifier) == 2;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }

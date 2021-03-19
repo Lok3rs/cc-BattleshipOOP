@@ -25,7 +25,7 @@ public class ComputerPlayerMedium extends ComputerPlayer {
 
     @Override
     public void handleShoot(Board boardShooting, Board boardEnemy) throws IOException {
-        final Input input = new Input();
+        final Input input = new Input(display);
 
         if (!checkAround) {
             shootCoords = super.getRandomCoordinates();

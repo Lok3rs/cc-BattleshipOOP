@@ -8,8 +8,9 @@ import java.io.IOException;
 
 public class Battleship {
 
-    public Input input = new Input();
+
     public Display display = new Display();
+    public Input input = new Input(display);
     private final Highscore highscore = new Highscore(display);
 
     public Battleship() throws IOException {
