@@ -1,6 +1,7 @@
 package com.codecool.highscores;
 
 import com.codecool.connection.Connection;
+import com.codecool.users.User;
 import com.codecool.utils.Display;
 
 import java.sql.ResultSet;

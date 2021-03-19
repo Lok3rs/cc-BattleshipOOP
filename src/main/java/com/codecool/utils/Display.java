@@ -1,18 +1,14 @@
 package com.codecool.utils;
 
-import com.codecool.board.Board;
 import com.codecool.board.Square;
 import com.codecool.board.enums.SquareStatus;
-import com.codecool.highscores.Highscore;
-import com.codecool.highscores.User;
+import com.codecool.users.User;
 import com.codecool.player.Player;
 import com.codecool.utils.enums.ComputerPlayerDifficultyOptions;
 import com.codecool.utils.enums.MainMenuOptions;
 import com.codecool.utils.enums.ShipPlacementOptions;
 import com.codecool.utils.enums.StartGameMenuOptions;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Display {
