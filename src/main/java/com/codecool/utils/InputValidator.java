@@ -6,24 +6,24 @@ public class InputValidator {
     private final int gameBoardSize = 10;
 
     public boolean isValidRowInput(String rowIdentifier) {
-        return isValidOptionInput(rowIdentifier.charAt(0), 'A', 'A' + gameBoardSize) && rowIdentifier.length() == 1;
+        return isValidOptionInput(rowIdentifier, 'A', 'A' + gameBoardSize) && rowIdentifier.length() == 1;
     }
 
     public boolean isValidColumnInput(String columnIdentifier) {
-        return isValidOptionInput(columnIdentifier.charAt(0), 1, gameBoardSize) && columnIdentifier.length() == 1;
+        return isValidOptionInput(columnIdentifier, 1, gameBoardSize) && columnIdentifier.length() == 1;
     }
 
     public boolean isValidOrientationIdentifier(String orientationIdentifier) {
-        return isValidOptionInput(orientationIdentifier.charAt(0), 1, 2) && orientationIdentifier.length() == 1;
+        return isValidOptionInput(orientationIdentifier, 1, 2) && orientationIdentifier.length() == 1;
     }
 
-    public boolean isValidOptionInput(char optionIdentifier, int minVal, int maxVal) {
+    public boolean isValidOptionInput(String optionIdentifier, int minVal, int maxVal) {
         int optionId;
         try {
-            optionId = Integer.parseInt(String.valueOf(optionIdentifier));
+            optionId = Integer.parseInt(optionIdentifier);
             return optionId >= minVal && optionId <= maxVal;
         } catch (NumberFormatException e) {
-            return true;
+            return false;
         }
     }
 }

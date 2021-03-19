@@ -19,7 +19,6 @@ public class Connection {
         final String DB_URL = String.format("jdbc:postgresql://%s/%s?user=%s&password=%s",
                 env.get("PSQL_HOST"), env.get("PSQL_DBNAME"), env.get("PSQL_USER"), env.get("PSQL_PASSWORD"));
         try {
-
             Class.forName(DRIVER);
         } catch (ClassNotFoundException e) {
             display.printMessage("No JDBC driver found");

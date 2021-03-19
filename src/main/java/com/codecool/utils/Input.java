@@ -27,8 +27,8 @@ public class Input {
         do {
             display.printMessage(firstTry ? "Select option: " : "Invalid input, try again: ");
             firstTry = false;
-            userInput = scanner.next().toUpperCase();
-        } while (!inputValidator.isValidOptionInput(userInput.charAt(0), minVal, maxVal) && userInput.length() > 1);
+            userInput = scanner.next();
+        } while (!inputValidator.isValidOptionInput(userInput, minVal, maxVal));
         return Integer.parseInt(userInput);
     }
 

@@ -17,8 +17,5 @@ public abstract class ComputerPlayer extends Player {
         return random.nextInt(10);
     }
 
-    protected int[] getRandomCoordinates() {
-        return new int[]{getRandomCord(), getRandomCord()};
-    }
 }
 
