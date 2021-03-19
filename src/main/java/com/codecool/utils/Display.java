@@ -21,7 +21,7 @@ public class Display {
 
 
     public void printMessage(String message){
-        System.out.println(message);
+        System.out.print(tabs + message);
     }
 
     public void printLogo(){
@@ -80,16 +80,14 @@ public class Display {
 
     public void showPlacementOptions(){
         System.out.println(borderLine);
-        System.out.printf(tabs + "| %-25s|%n", "Choose placement method");
+        System.out.printf(tabs + "|  %-24s|%n", "Choose placement method");
         for (ShipPlacementOptions option : shipPlacementOptions){
-            System.out.printf(tabs + "|       %-19s|%n", option.getOption());
+            System.out.printf(tabs + "|   %-23s|%n", option.getOption());
         }
         System.out.println(borderLine);
     }
 
     public void showHighscores(List<User> highscores){
-//        final int nameIndex = 0;
-//        final int scoreIndex = 1;
         final String sepLine = tabs + "|--------------+-----------|";
         System.out.println(borderLine);
         System.out.printf(tabs + "|   %-10s |   %5s   |\n", "Name", "Score");
@@ -108,7 +106,7 @@ public class Display {
     public void showGameBoard(Square[][] gameBoard){
         printColumnNumbers(gameBoard[0].length);
         for (int i = 0; i < gameBoard.length; i++){
-            System.out.printf("%-2s",(char) (0x0041 + i));
+            System.out.printf("%s%-2s", tabs, (char) (0x0041 + i));
             for (int j = 0; j < gameBoard[i].length; j++){
                 System.out.print(gameBoard[i][j].getSquareStatus() == SquareStatus.SUNK ?
                        String.format("%2s",gameBoard[i][j].getSquareCharacter()):
@@ -119,7 +117,7 @@ public class Display {
     }
 
     private void printColumnNumbers(int gameBoardLength){
-        System.out.print(" ");
+        System.out.printf("%s ", tabs);
         for (int i = 0; i < gameBoardLength; i++){
             System.out.printf("%2s", (char) (0x24f5 + i));
         }
