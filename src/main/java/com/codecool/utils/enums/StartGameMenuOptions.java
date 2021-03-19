@@ -9,7 +9,7 @@ public enum StartGameMenuOptions {
         this.option = option;
     }
 
-    public String getOption(){
+    public String getOption() {
         return this.option;
     }
 }

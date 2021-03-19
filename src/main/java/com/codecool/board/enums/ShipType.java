@@ -9,7 +9,7 @@ public enum ShipType {
         this.shipLength = shipLength;
     }
 
-    public int getShipLength(){
+    public int getShipLength() {
         return this.shipLength;
     }
 }

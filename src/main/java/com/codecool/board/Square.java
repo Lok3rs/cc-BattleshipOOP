@@ -15,10 +15,10 @@ public class Square {
         this.squareStatus = squareStatus;
     }
 
-    public String getSquareCharacter(){
+    public String getSquareCharacter() {
         char squareSymbol = (char) squareStatus.getSquareUnicode();
         Colors color;
-        switch (squareStatus){
+        switch (squareStatus) {
             case HIT -> color = Colors.YELLOW;
             case SUNK -> color = Colors.RED;
             case SHIP -> color = Colors.GREEN;

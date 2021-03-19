@@ -16,7 +16,7 @@ public class ComputerPlayerEasy extends ComputerPlayer {
     protected void getCoordsAndShoot(Board shootingBoard, Board enemyBoard) {
         int targetY = getRandomCord();
         int targetX = getRandomCord();
-        while (shootingBoard.getGameBoard()[targetY][targetX].getSquareStatus() != SquareStatus.EMPTY){
+        while (shootingBoard.getGameBoard()[targetY][targetX].getSquareStatus() != SquareStatus.EMPTY) {
             targetY = getRandomCord();
             targetX = getRandomCord();
         }

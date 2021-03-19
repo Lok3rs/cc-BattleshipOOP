@@ -9,7 +9,7 @@ public enum ShipPlacementOptions {
         this.option = option;
     }
 
-    public String getOption(){
+    public String getOption() {
         return this.option;
     }
 }

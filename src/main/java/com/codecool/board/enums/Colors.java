@@ -9,7 +9,7 @@ public enum Colors {
         this.ANSICode = ANSICode;
     }
 
-    public String getANSICode(){
+    public String getANSICode() {
         return this.ANSICode;
     }
 }

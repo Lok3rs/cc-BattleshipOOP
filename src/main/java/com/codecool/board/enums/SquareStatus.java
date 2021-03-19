@@ -10,8 +10,8 @@ public enum SquareStatus {
         this.squareStatusCode = squareStatusCode;
     }
 
-    public int getSquareUnicode(){
-        switch (this.squareStatusCode){
+    public int getSquareUnicode() {
+        switch (this.squareStatusCode) {
             case 0 -> {
                 return 0x25A1;
             }

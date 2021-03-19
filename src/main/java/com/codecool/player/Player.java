@@ -26,20 +26,19 @@ public abstract class Player {
     }
 
 
-
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
-    public int getScore(){
+    public int getScore() {
         return this.score;
     }
 
-    public void increaseScore(){
+    public void increaseScore() {
         this.score += 30;
     }
 
-    public ShipCollection getShipsCollection(){
+    public ShipCollection getShipsCollection() {
         return ships;
     }
 
@@ -57,7 +56,7 @@ public abstract class Player {
         input.waitForEnter();
     }
 
-    public void saveScore(){
+    public void saveScore() {
         if (highscore.findUser(this.name)) {
             highscore.updateScore(this.name, this.score);
         } else {
@@ -65,7 +64,7 @@ public abstract class Player {
         }
     }
 
-    protected void makeShot(Board enemyBoard, Board shootingBoard, int targetY, int targetX){
+    protected void makeShot(Board enemyBoard, Board shootingBoard, int targetY, int targetX) {
         switch (enemyBoard.getGameBoard()[targetY][targetX].getSquareStatus()) {
             case EMPTY -> {
                 display.printMessage(this.getClass() == HumanPlayer.class ? "You missed." : "Computer missed.");
@@ -84,7 +83,7 @@ public abstract class Player {
         }
     }
 
-    protected void getCoordsAndShoot(Board shootingBoard, Board enemyBoard){
+    protected void getCoordsAndShoot(Board shootingBoard, Board enemyBoard) {
 
     }
 

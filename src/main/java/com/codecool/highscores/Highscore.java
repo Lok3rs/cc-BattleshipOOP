@@ -48,13 +48,12 @@ public class Highscore {
         List<User> highscores = new LinkedList<>();
         try {
             ResultSet queryResult = conn.getResultSet("SELECT * FROM highscores ORDER BY highscore DESC");
-            int id, score;
+            int score;
             String username;
             while (queryResult.next()) {
-                id = queryResult.getInt("id");
                 score = queryResult.getInt("highscore");
                 username = queryResult.getString("username");
-                highscores.add(new User(id, username, score));
+                highscores.add(new User(username, score));
             }
         } catch (SQLException e) {
             e.printStackTrace();

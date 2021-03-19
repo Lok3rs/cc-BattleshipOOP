@@ -10,7 +10,7 @@ public class ShipCollection {
     private final List<Ship> ships = new ArrayList<>();
 
     public ShipCollection() {
-        for (ShipType shipType : ShipType.values()){
+        for (ShipType shipType : ShipType.values()) {
             addShips(new Ship(shipType));
         }
     }
