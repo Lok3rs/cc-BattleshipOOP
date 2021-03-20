@@ -6,7 +6,11 @@ public class InputValidator {
     private final int gameBoardSize = 10;
 
     public boolean isValidRowInput(String rowIdentifier) {
-        return isValidOptionInput(rowIdentifier, 'A', 'A' + gameBoardSize) && rowIdentifier.length() == 1;
+        int validRowInputLength = 1;
+        boolean validRowLength = rowIdentifier.length() == validRowInputLength;
+        if (!validRowLength) return false;
+        int rowId = rowIdentifier.charAt(0);
+        return rowId >= 'A' && rowId < 'A' + gameBoardSize;
     }
 
     public boolean isValidColumnInput(String columnIdentifier) {

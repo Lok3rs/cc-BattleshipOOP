@@ -14,16 +14,18 @@ public class Battleship {
     private final Highscore highscore = new Highscore(display);
 
     public void startGame() throws IOException {
-        display.printLogo();
         handleMainMenu();
     }
 
     private void start(Player player1, Player player2) throws IOException {
+        display.clearScreen();
         Game game = new Game(player1, player2, display, input);
         game.startGame();
     }
 
     private void handleMainMenu() throws IOException {
+        display.clearScreen();
+        display.printLogo();
         display.showMainMenuOptions();
         switch (input.getOption(0, 2)) {
             case 1 -> handleGameMenu();
@@ -36,11 +38,15 @@ public class Battleship {
     }
 
     private void handleShowHighscores() throws IOException {
+        display.clearScreen();
+        display.printLogo();
         display.showHighscores(highscore.getAllScores());
         input.waitForEnter();
     }
 
     private void handleGameMenu() throws IOException {
+        display.clearScreen();
+        display.printLogo();
         display.showStartGameOptions();
         switch (input.getOption(0, 3)) {
             case 1 -> {
@@ -55,6 +61,8 @@ public class Battleship {
     }
 
     private void handleComputerPlayerDifficultyMenu() throws IOException {
+        display.clearScreen();
+        display.printLogo();
         Player player1 = null;
         Player player2 = null;
         display.showComputerPlayerDifficultyOptions();
@@ -70,6 +78,8 @@ public class Battleship {
     }
 
     private void handleComputerPlayersMenu() throws IOException {
+        display.clearScreen();
+        display.printLogo();
         display.showComputerPlayerDifficultyOptions();
         switch (input.getOption(0, 3)) {
             case 1 -> start(new ComputerPlayerEasy(display, input, highscore), new ComputerPlayerEasy(display, input, highscore));
