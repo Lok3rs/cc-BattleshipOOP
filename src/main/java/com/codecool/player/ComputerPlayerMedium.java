@@ -1,13 +1,11 @@
 package com.codecool.player;
 
 import com.codecool.board.Board;
-import com.codecool.board.Square;
 import com.codecool.board.enums.SquareStatus;
 import com.codecool.highscores.Highscore;
 import com.codecool.utils.Display;
 import com.codecool.utils.Input;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class ComputerPlayerMedium extends ComputerPlayer {

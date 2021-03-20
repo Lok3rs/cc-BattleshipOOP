@@ -19,7 +19,7 @@ public class HumanPlayer extends Player {
         int targetY = shootCoords[0];
         int targetX = shootCoords[1];
         while (shootingBoard.getGameBoard()[targetY][targetX].getSquareStatus() != SquareStatus.EMPTY) {
-            display.printMessage("You have already shoot there.");
+            display.printMessage("You have already shoot there.\n");
             shootCoords = input.getCoordinates();
             targetY = shootCoords[0];
             targetX = shootCoords[1];
